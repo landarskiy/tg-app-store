@@ -1,27 +1,33 @@
 "use strict";
 
-let cardWidth = 250;
-let cardHeight = 350;
-
-function cardView(number) {
+function pageView(id, content) {
     return `
-    <div class="card">
-        <div class="card-content">
-            <h2>Card ${number}</h2>
-            <p>This is the content of Card ${number}.</p>
+    <div id="${id}" class="page-container">
+        ${content}
+    </div>
+    `;
+}
+
+function appItemView(id, imgUrl, title, description, onClickCallbackName) {
+    return `
+    <div id="${id}" class="item-app" onclick="${onClickCallbackName}(this)">
+        ${smallRoundedSquareImage(imgUrl)}
+        <div class="item-app-content" style="margin-left: 12px">
+            <div class="text-title-medium">${title}</div>
+            <div class="text-body-medium">${description}</div>
         </div>
     </div>
     `;
 }
 
-function gameBoard() {
+function appDetailsImageView(imgUrl) {
     return `
-    <div id="game-board" class="game-board">
-        <div id="game-header" class="game-header"></div>
-        <div id="game-cards" class="game-cards"></div>
-        <div id="game-actions" class="game-actions">
-            <button class="get-card-button" onClick="addNextCard()">Get Card</button>
-        </div>
-    </div>
+    <img class="image-app-details" src="${imgUrl}"></img>
+    `;
+}
+
+function smallRoundedSquareImage(url) {
+    return `
+    <div class="image image-small image-rounded" style="background-image: url('${url}')"></div>
     `;
 }
