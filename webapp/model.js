@@ -32,3 +32,10 @@ class AppDetailsInfo {
         this.fav = fav;
     }
 }
+
+class DisplayValue {
+    constructor(value, displayText) {
+        this.value = value;
+        this.displayText = displayText;
+    }
+}

@@ -1,31 +1,57 @@
 "use strict";
 let appsList = [];
+const categoriesList = [
+    new DisplayValue("all", "All"),
+    new DisplayValue("finance", "Finance"),
+    new DisplayValue("food", "Food"),
+    new DisplayValue("games", "Games"),
+    new DisplayValue("utilities", "Utilities")
+];
+let selectedCategoryId = categoriesList[0].value;
 
 function displayMainPage() {
     replaceTopPage("main-page", mainPage());
-    loadApps("All");
+    loadApps(selectedCategoryId);
+    selectCategoryOnUi(selectedCategoryId);
 }
 
 function mainPage() {
     return `
-    <h2>Loading page</h2>
-    <p>Wait until the data has been loaded.</p>
+    ${categoryBarView("app-categories", categoriesList, "onCategoryClicked")}
     <div id="apps-container"></div>
     `;
 }
 
-function onAppClicked(element) {
-    const appIndex = parseInt(element.id.split("_")[1]);
+function onAppClicked(appIndex) {
     if(appIndex < appsList.length) {
         displayAppPage(appsList[appIndex]);
     }
+}
+
+function onCategoryClicked(categoryId) {
+    if(categoryId == selectedCategoryId) {
+        return;
+    }
+    unselectCategoryOnUi(selectedCategoryId);
+    selectedCategoryId = categoryId;
+    selectCategoryOnUi(selectedCategoryId);
+}
+
+function selectCategoryOnUi(categoryId) {
+    removeClassFromElement(`category-${categoryId}`, "button-action-secondary");
+    addClassToElement(`category-${categoryId}`, "button-action-primary");
+}
+
+function unselectCategoryOnUi(categoryId) {
+    addClassToElement(`category-${categoryId}`, "button-action-secondary");
+    removeClassFromElement(`category-${categoryId}`, "button-action-primary");
 }
 
 function displayApps(apps) {
     let displayContent = "";
     for (let i = 0; i < apps.length; i++) {
         const app = apps[i];
-        displayContent += `\n${appItemView("app_" + i, app.iconUrl, app.title, app.category, "onAppClicked")}`
+        displayContent += `\n${appItemView(i, app.iconUrl, app.title, app.category, app.tags, app.rating, app.fav, "onAppClicked")}`
     }
     replaceInElement("apps-container", displayContent);
     appsList = apps;

@@ -21,7 +21,7 @@ function popPage() {
         return;
     }
     const topPageId = viewStackIds.pop();
-    const pageToRemove = document.getElementById('your-element-id');
+    const pageToRemove = document.getElementById(topPageId);
     if (pageToRemove) {
         pageToRemove.remove();
     } 
