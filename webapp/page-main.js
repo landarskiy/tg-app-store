@@ -1,4 +1,6 @@
 "use strict";
+
+let firstDisplay = true;
 let appsList = [];
 const categoriesList = [
     new DisplayValue("all", "All"),
@@ -55,6 +57,11 @@ function displayApps(apps) {
     }
     replaceInElement("apps-container", displayContent);
     appsList = apps;
+
+    if(firstDisplay) {
+        Telegram.WebApp.expand();
+        firstDisplay =  false;
+    }
 }
 
 function loadApps(category) {

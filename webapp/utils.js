@@ -1,29 +1,40 @@
 "use strict";
 
 function appendToElement(elementId, data) {
-    const element = document.getElementById(elementId);
-    if(element) {
+    getElementById(elementId, (element) => {
         element.innerHTML += data;
-    }
+    });
 }
 
 function replaceInElement(elementId, data) {
-    const element = document.getElementById(elementId);
-    if(element) {
+    getElementById(elementId, (element) => {
         element.innerHTML = data;
-    }
+    });
 }
 
 function addClassToElement(elementId, className) {
-    const element = document.getElementById(elementId);
-    if(element) {
+    getElementById(elementId, (element) => {
         element.classList.add(className);
-    }
+    });
 }
 
 function removeClassFromElement(elementId, className) {
-    const element = document.getElementById(elementId);
-    if(element) {
+    getElementById(elementId, (element) => {
         element.classList.remove(className);
+    });
+}
+
+function removeClassesFromElement(elementId, classNameList) {
+    getElementById(elementId, (element) => {
+        for (const className of classNameList) {
+            element.classList.remove(className);
+        }
+    });
+}
+
+function getElementById(elementId, callback) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        callback(element);
     }
 }
