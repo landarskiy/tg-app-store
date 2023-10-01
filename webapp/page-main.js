@@ -3,13 +3,14 @@
 let firstDisplay = true;
 let appsList = [];
 const categoriesList = [
+    new DisplayValue("my", "My"),
     new DisplayValue("all", "All"),
     new DisplayValue("finance", "Finance"),
     new DisplayValue("food", "Food"),
     new DisplayValue("games", "Games"),
     new DisplayValue("utilities", "Utilities")
 ];
-let selectedCategoryId = categoriesList[0].value;
+let selectedCategoryId = categoriesList[1].value;
 
 function displayMainPage() {
     replaceTopPage("main-page", mainPage());
@@ -78,7 +79,11 @@ function loadApps(category) {
 
 function loadAppsFromStub(category) {
     const appsResponse = JSON.parse(mockAppListResponse);
-    displayApps(appsResponse.apps);
+    let appList = appsResponse.apps;
+    for(let i = 0; i< 20; i++) {
+        appList = appList.concat(appsResponse.apps);
+    }
+    displayApps(appList);
 }
 
 function loadAppsFromServer(category) {

@@ -13,7 +13,7 @@ window.Telegram.WebApp.BackButton.onClick(() => {
 function pushPage(pageId, content) {
     appendToElement("frame-root", pageView(pageId, content));
     viewStackIds.push(pageId);
-    updateBackButtonVisibility();
+    onViewStackChanged();
 }
 
 function popPage() {
@@ -25,15 +25,15 @@ function popPage() {
     if (pageToRemove) {
         pageToRemove.remove();
     } 
-    updateBackButtonVisibility();
+    onViewStackChanged();
 }
 
 function replaceTopPage(pageId, content) {
     popPage();
     pushPage(pageId, content);
-    updateBackButtonVisibility();
+    onViewStackChanged();
 }
 
-function updateBackButtonVisibility() {
+function onViewStackChanged() {
     window.Telegram.WebApp.BackButton.isVisible = viewStackIds.length > 1;
 }

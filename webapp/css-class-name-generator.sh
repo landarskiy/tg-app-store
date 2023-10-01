@@ -6,6 +6,7 @@ js_file="css-class-names.js"
 class_names=$(grep -o '\.[A-Za-z][A-Za-z0-9_-]*' "$css_file" | awk '{print "" $0 ""}')
 
 echo "// Generated class names from $css_file" > "$js_file"
+exists_constants=""
 for class_name in $class_names; do
     class_name="${class_name#.}"
     #make const in snake case
@@ -16,7 +17,10 @@ for class_name in $class_names; do
     done
     const_name="${const_name%_}"
 
-    echo "const css$const_name = \"$class_name\";" >> "$js_file"
+    if [[ "$exists_constants" != *"$const_name"* ]]; then
+        exists_constants="$exists_constants $const_name"
+        echo "const css$const_name = \"$class_name\";" >> "$js_file"
+    fi
 done
 
 echo "Class names extracted from $css_file and saved to $js_file"
