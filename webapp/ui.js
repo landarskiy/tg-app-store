@@ -19,7 +19,7 @@ function appItemView(id, imgUrl, title, category, tags, rating, bookmarked, onCl
     }
     return `
     <div id="app-${id}" class="item-app" onclick="${onClickCallbackName}(${id})">
-        ${smallRoundedSquareImage(imgUrl)}
+        ${smallRoundedSquareImageView(imgUrl)}
         <div class="item-app-content" style="margin-left: 12px">
             <div class="text-title-medium">${title}</div>
             <div class="text-body-medium" style="margin-top: 4px; margin-bottom: 2px">${categoriesLine}</div>
@@ -35,7 +35,7 @@ function appDetailsImageView(imgUrl) {
     `;
 }
 
-function smallRoundedSquareImage(url) {
+function smallRoundedSquareImageView(url) {
     return `
     <div class="image image-small image-rounded" style="background-image: url('${url}')"></div>
     `;
@@ -43,7 +43,7 @@ function smallRoundedSquareImage(url) {
 
 function categoryChipView(id, displayValue, onClickCallbackName) {
     return `
-    <button id="category-${id}" class="button-action-secondary" style="margin: 12px 4px" onClick="${onClickCallbackName}('${id}')"">${displayValue.displayText}</button>
+    <button id="category-${id}" class="${cssButtonAction} ${cssButtonActionSecondary} ${cssButtonRipplePrimary}" style="margin: 12px 4px" onClick="${onClickCallbackName}('${id}')"">${displayValue.displayText}</button>
     `;
 }
 

@@ -6,6 +6,10 @@
     --tg-theme-button-text-color: #FFFFFF;
 }
 
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -89,43 +93,57 @@ body {
     flex: 1;
 }
 
-.button-action-primary {
+.button-action {
     padding: 10px 20px;
-    border: 2px solid var(--tg-theme-button-color);
     border-radius: 25px;
-    background-color: var(--tg-theme-button-color);
-    color: var(--tg-theme-button-text-color);
     font-size: 16px;
+    overflow: hidden;
     cursor: pointer; 
     outline: none;
 }
 
-.button-action-primary:hover {
-    filter: brightness(85%);
-}
-
-.button-action-primary:focus{
-    border-color:transparent!important;
-    outline:none;
+.button-action-primary {
+    border: 2px solid var(--tg-theme-button-color);
+    background-color: var(--tg-theme-button-color);
+    color: var(--tg-theme-button-text-color);
 }
 
 .button-action-secondary {
-    padding: 10px 20px;
     border: 2px solid var(--tg-theme-button-color);
-    border-radius: 25px;
     background-color: var(--tg-theme-bg-color);
     color: var(--tg-theme-button-color);
-    font-size: 16px;
-    cursor: pointer; 
-    outline: none;
 }
 
-.button-action-secondary:hover {
-    filter: brightness(85%);
+.button-ripple-primary {
+    background-position: center;
+    transition: background 0.8s;
 }
 
-.button-action-secondary:focus{
-    outline:none;
+.button-ripple-primary:hover {
+    background: var(--tg-theme-button-color) radial-gradient(circle, transparent 1%, var(--tg-theme-button-color) 1%) center/15000%;
+    filter: brightness(130%);
+}
+
+.button-ripple-primary:active {
+    background-color: var(--tg-theme-button-color);
+    background-size: 100%;
+    transition: background 0s;
+}
+
+.button-ripple-secondary {
+    background-position: center;
+    transition: background 0.8s;
+}
+
+.button-ripple-secondary:hover {
+    background: var(--tg-theme-bg-color) radial-gradient(circle, transparent 1%, var(--tg-theme-bg-color) 1%) center/15000%;
+    filter: brightness(130%);
+}
+
+.button-ripple-secondary:active {
+    background-color: var(--tg-theme-bg-color);
+    background-size: 100%;
+    transition: background 0s;
 }
 
 .text-headline-large {

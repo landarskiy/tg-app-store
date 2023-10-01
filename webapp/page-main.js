@@ -40,13 +40,17 @@ function onCategoryClicked(categoryId) {
 }
 
 function selectCategoryOnUi(categoryId) {
-    removeClassFromElement(`category-${categoryId}`, "button-action-secondary");
-    addClassToElement(`category-${categoryId}`, "button-action-primary");
+    removeClassFromElement(`category-${categoryId}`, cssButtonActionSecondary);
+    removeClassFromElement(`category-${categoryId}`, cssButtonRippleSecondary);
+    addClassToElement(`category-${categoryId}`,cssButtonActionPrimary);
+    addClassToElement(`category-${categoryId}`,cssButtonRipplePrimary);
 }
 
 function unselectCategoryOnUi(categoryId) {
-    addClassToElement(`category-${categoryId}`, "button-action-secondary");
-    removeClassFromElement(`category-${categoryId}`, "button-action-primary");
+    addClassToElement(`category-${categoryId}`, cssButtonActionSecondary);
+    addClassToElement(`category-${categoryId}`, cssButtonRippleSecondary);
+    removeClassFromElement(`category-${categoryId}`, cssButtonActionPrimary);
+    removeClassFromElement(`category-${categoryId}`, cssButtonRipplePrimary);
 }
 
 function displayApps(apps) {

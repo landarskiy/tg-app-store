@@ -12,12 +12,18 @@ function appDetailsPage() {
     return `
     <div id="image-app-details-container" class="image-app-details-container">        
     </div>
+    ${appDetailsActionsView()}
+    `;
+}
+
+function appDetailsActionsView() {
+    return `
     <div class="container-flex-space-between">
         <div class="container-item-flex-equal" style="padding: 20px 10px">
-            <button id="${idAppDetailsBookmark}" class="button-action-primary" style="width: 100%;" onClick="onBookmarkClicked()">Bookmark</button>
+            <button id="${idAppDetailsBookmark}" class="${cssButtonAction} ${cssButtonActionPrimary} ${cssButtonRipplePrimary}" style="width: 100%;" onClick="onBookmarkClicked()">Bookmark</button>
         </div>
         <div class="container-item-flex-equal" style="padding: 20px 10px">
-            <button class="button-action-primary" style="width: 100%" onClick="onOpenAppClicked()">Launch</button>
+            <button class="${cssButtonAction} ${cssButtonActionPrimary} ${cssButtonRipplePrimary}" style="width: 100%" onClick="onOpenAppClicked()">Launch</button>
         </div>
     </div>
     `;
@@ -27,12 +33,12 @@ function updateBookmarkState() {
     if(!selectedAppDetails) {
         return;
     }
-    removeClassesFromElement(idAppDetailsBookmark, ["button-action-primary",  "button-action-secondary"]);
+    removeClassesFromElement(idAppDetailsBookmark, [cssButtonActionPrimary,  cssButtonActionSecondary]);
     if(selectedAppDetails.fav) {
-        addClassToElement(idAppDetailsBookmark, "button-action-secondary");
+        addClassToElement(idAppDetailsBookmark, cssButtonActionSecondary);
         replaceInElement(idAppDetailsBookmark, "Bookmarked")
     } else {
-        addClassToElement(idAppDetailsBookmark, "button-action-primary");
+        addClassToElement(idAppDetailsBookmark, cssButtonActionPrimary);
         replaceInElement(idAppDetailsBookmark, "Bookmark")
     }
 }
