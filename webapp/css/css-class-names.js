@@ -1,6 +1,7 @@
 // Generated class names from style.css
 const cssFrameContainer = "frame-container";
 const cssPageContainer = "page-container";
+const cssContainerScrollH = "container-scroll-h";
 const cssContainerScrollHCategories = "container-scroll-h-categories";
 const cssContainerScrollHScreenshotListPreview = "container-scroll-h-screenshot-list-preview";
 const cssContainerFlexSpaceBetween = "container-flex-space-between";
@@ -15,6 +16,7 @@ const cssImageFullSizeParent = "image-full-size-parent";
 const cssImageAppScreenshotItemImage = "image-app-screenshot-item-image";
 const cssItemApp = "item-app";
 const cssItemAppContent = "item-app-content";
+const cssItemInScrollHContentSize = "item-in-scroll-h-content-size";
 const cssButtonAction = "button-action";
 const cssButtonActionPrimary = "button-action-primary";
 const cssButtonActionSecondary = "button-action-secondary";

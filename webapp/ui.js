@@ -1,5 +1,3 @@
-"use strict";
-
 function pageView(id, content) {
     return `
     <div id="${id}" class="${cssPageContainer}">
@@ -16,7 +14,7 @@ function appItemView(id, imgUrl, title, category, tags, rating, bookmarked, onCl
     return `
     <div id="app-${id}" class="${cssItemApp}" onclick="${onClickCallbackName}(${id})">
         ${smallRoundedSquareImageView(imgUrl)}
-        <div class="${cssItemAppContent}" style="margin-left: 12px">
+        <div class="${cssItemAppContent}" style="margin-left: 16px">
             <div class="${cssTextTitleMedium}">${title}</div>
             <div class="${cssTextBodyMedium}" style="margin-top: 4px; margin-bottom: 2px">${buildCategoriesLine(category, tags)}</div>
             <div class="${cssTextBodyMedium}">${rating} ★${bookmarkTag}</div>
@@ -72,23 +70,27 @@ function screenshotPreviewImageView(url) {
 
 function categoryChipView(id, displayValue, onClickCallbackName) {
     return `
-    <button id="category-${id}" class="${cssButtonAction} ${cssButtonActionSecondary} ${cssButtonRipplePrimary}" onClick="${onClickCallbackName}('${id}')"">${displayValue.displayText}</button>
+    <button id="category-${id}" class="${cssButtonAction} ${cssButtonActionSecondary} ${cssButtonRipplePrimary} ${cssItemInScrollHContentSize}" onClick="${onClickCallbackName}('${id}')"">${displayValue.displayText}</button>
     `;
 }
 
 function ratingBarView(id, onClickCallbackName) {
-    "☆ ★"
     let ratingContent = "";
     for(let i = 1; i<= 5; i++) {
         ratingContent += `
-        <div class="${cssContainerItemFlexEqual} ${cssRatingBarItem}" style="padding: 20px 10px">
+        <div class="${cssContainerItemFlexEqual} ${cssRatingBarItem}" style="padding: 0px 10px">
             <div id="app_rating_${i}" class="" style="width: 100%;" onClick="${onClickCallbackName}('${i}')"">☆</div>
         </div>
         `;
     }
     return `
-    <div id="${id}" class="${cssContainerFlexSpaceBetween}">
-        ${ratingContent}
+    <div style="display: flex; padding: 32px 16px 16px 16px; box-sizing: border-box; align-items: center;">
+        <div class="${cssItemInScrollHContentSize} ${cssTextTitleMedium}">Rate the app</div>
+        <div style="flex: 1; padding: 0px 16px">
+            <div id="${id}" class="${cssContainerFlexSpaceBetween}" style="max-width: 60px">
+                ${ratingContent}
+            </div>
+        </div>
     </div>
     `;
 }
@@ -102,7 +104,7 @@ function categoryBarView(id, categories, onClickCallbackName) {
         `;
     }
     return `
-    <div id="${id}" class="${cssContainerScrollHCategories}">
+    <div id="${id}" class="${cssContainerScrollH} ${cssContainerScrollHCategories}">
         ${categoriesLine}
     </div>
     `;

@@ -1,5 +1,3 @@
-"use strict";
-
 function appendToElement(elementId, data) {
     getElementById(elementId, (element) => {
         element.innerHTML += data;

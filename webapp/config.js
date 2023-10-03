@@ -1,1 +1,3 @@
-let stubData = false;
+const configuration = {
+    serverUrl: ""
+}

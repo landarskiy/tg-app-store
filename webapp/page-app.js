@@ -1,5 +1,3 @@
-"use strict";
-
 const idAppDetailsBookmark = "app-details-bookmark";
 let selectedAppDetails;
 
@@ -14,16 +12,17 @@ function appDetailsPage(app) {
     ${appDetailsActionsView()}
     ${appScreenshotsView()}
     ${ratingBarView("rating-bar", "onRatingClicked")}
+    ${descriptionBlockView()}
     `;
 }
 
 function appDetailsActionsView() {
     return `
-    <div class="${cssContainerFlexSpaceBetween}">
-        <div class="${cssContainerItemFlexEqual}" style="padding: 20px 10px">
+    <div class="${cssContainerFlexSpaceBetween}"  style="padding: 0px 16px 16px 16px; gap: 16px">
+        <div class="${cssContainerItemFlexEqual}">
             <button id="${idAppDetailsBookmark}" class="${cssButtonAction} ${cssButtonActionPrimary} ${cssButtonRipplePrimary}" style="width: 100%;" onClick="onBookmarkClicked()">Bookmark</button>
         </div>
-        <div class="${cssContainerItemFlexEqual}" style="padding: 20px 10px">
+        <div class="${cssContainerItemFlexEqual}">
             <button class="${cssButtonAction} ${cssButtonActionPrimary} ${cssButtonRipplePrimary}" style="width: 100%" onClick="onOpenAppClicked()">Launch</button>
         </div>
     </div>
@@ -32,7 +31,14 @@ function appDetailsActionsView() {
 
 function appScreenshotsView() {
     return `
-    <div id="app-details-screenshots" class="${cssContainerScrollHScreenshotListPreview}">
+    <div id="app-details-screenshots" class="${cssContainerScrollH} ${cssContainerScrollHScreenshotListPreview}">
+    </div>
+    `;
+}
+
+function descriptionBlockView() {
+    return `
+    <div id="app-details-description" class="${cssTextBodyMedium}" style="box-sizing: border-box; width: 100%; padding: 0px 16px 16px 16px;">
     </div>
     `;
 }
@@ -74,8 +80,8 @@ function onBookmarkClicked() {
 }
 
 function onRatingClicked(value) {
-    if(!window.Telegram.WebApp.initDataUnsafe.user.is_premium) {
-        window.Telegram.WebApp.showAlert("Unfortunately, only premium Telegram users can rate apps. This makes our store more reliable and protected from rating scoring by bots.")
+    if(!window.Telegram.WebApp.initDataUnsafe?.user?.is_premium) {
+        window.Telegram.WebApp.showAlert("Unfortunately, only premium Telegram users can rate apps.\nThis makes our store more reliable and protected from rating scoring by bots.")
         window.Telegram.WebApp.HapticFeedback.selectionChanged("warning");
         return;
     }
@@ -90,6 +96,7 @@ function displayAppDetails(appDetails) {
     updateBookmarkState();
     updateRatingState();
     displayScreenshots(appDetails);
+    replaceInElement("app-details-description", appDetails.description);
 }
 
 function displayScreenshots(appDetails) {
@@ -109,23 +116,24 @@ function updateAppDetails(appDetails) {
 // Network
 
 function loadAppDetails(app) {
-    if (stubData) {
-        loadAppsDetailsFromStub(app);
-    }
+    loadAppDetailsDelegate(
+        window.Telegram.WebApp.initDataUnsafe?.user?.id, 
+        app.id,
+        window.Telegram.WebApp.initData,
+        data => {
+            displayAppDetails(data);
+        },
+        error => {}
+    );
 }
 
 function bookmarkApp(appDetails) {
-    if(stubData) {
-        stubBookmarkApp(appDetails);
-    }
-}
-
-function loadAppsDetailsFromStub(app) {
-    const appResponse = JSON.parse(mockAppDetailsResponse);
-    displayAppDetails(appResponse[app.id]);
-}
-
-function stubBookmarkApp(appDetails) {
-    appDetails.fav = !appDetails.fav;
-    updateAppDetails(appDetails);
+    bookmarkAppDelegate(
+        window.Telegram.WebApp.initDataUnsafe?.user?.id, 
+        app.id,
+        !appDetails.fav,
+        window.Telegram.WebApp.initData,
+        data => {},
+        error => {}
+    );
 }

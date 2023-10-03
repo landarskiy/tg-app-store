@@ -1,5 +1,3 @@
-"use strict";
-
 let firstDisplay = true;
 let appsList = [];
 const categoriesList = [
@@ -38,6 +36,7 @@ function onCategoryClicked(categoryId) {
     unselectCategoryOnUi(selectedCategoryId);
     selectedCategoryId = categoryId;
     selectCategoryOnUi(selectedCategoryId);
+    loadApps(categoryId);
 }
 
 function selectCategoryOnUi(categoryId) {
@@ -69,36 +68,16 @@ function displayApps(apps) {
     }
 }
 
+// Network
+
 function loadApps(category) {
-    if(stubData) {
-        loadAppsFromStub(category);
-    } else {
-        loadAppsFromServer(category);
-    }
-}
-
-function loadAppsFromStub(category) {
-    const appsResponse = JSON.parse(mockAppListResponse);
-    let appList = appsResponse.apps;
-    for(let i = 0; i< 20; i++) {
-        appList = appList.concat(appsResponse.apps);
-    }
-    displayApps(appList);
-}
-
-function loadAppsFromServer(category) {
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
+    loadAppListDelegate(
+        window.Telegram.WebApp.initDataUnsafe?.user?.id, 
+        category,
+        window.Telegram.WebApp.initData,
+        data => {
+            displayApps(data);
         },
-        body: JSON.stringify(postData),
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
-        .catch(error => {
-            console.error('Fetch error:', error);
-        });
+        error => {}
+    );
 }
