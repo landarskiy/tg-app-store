@@ -133,7 +133,10 @@ function bookmarkApp(appDetails) {
         app.id,
         !appDetails.fav,
         window.Telegram.WebApp.initData,
-        data => {},
+        data => {
+            appDetails.fav = data;
+            updateBookmarkState();
+        },
         error => {}
     );
 }

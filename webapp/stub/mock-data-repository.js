@@ -41,6 +41,7 @@ bookmarkAppDelegate = function bookmarkApp(userId, appId, bookmarked, initData, 
     } else {
         stubUserFavorites[appId] = null;
     }
+    successCallback(bookmarked);
 }
 
 rateAppDelegate = function rateApp(userId, appId, rating, initData, successCallback, failCallback) {
@@ -54,6 +55,7 @@ const jsonMockAppList = `
         "iconUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/icon-durger.jpeg",
         "title": "Durger King",
         "rating": "4.2",
+        "rateCount": 6,
         "category": "Food",
         "tags": ["Fast food"]
     },
@@ -62,6 +64,7 @@ const jsonMockAppList = `
         "iconUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/icon-wallet.jpeg",
         "title": "Wallet",
         "rating": "4.9",
+        "rateCount": 12,
         "category": "Finance",
         "tags": [ "Wallet" ]
     }

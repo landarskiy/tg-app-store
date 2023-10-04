@@ -67,11 +67,12 @@ class AppsResponse {
 }
 
 class AppInfo {
-    constructor(id, iconUrl, title, rating, category, tags, fav) {
+    constructor(id, iconUrl, title, rating, rateCount, category, tags, fav) {
         this.id = id;
         this.iconUrl = iconUrl;
         this.title = title;
         this.rating = rating;
+        this.rateCount = rateCount;
         this.category = category;
         this.tags = tags;
         this.fav = fav;

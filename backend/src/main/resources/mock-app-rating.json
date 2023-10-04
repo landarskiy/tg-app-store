@@ -1,0 +1,16 @@
+[
+  {"appId": "durgerkingbot", "userId": "1", "rating": 4},
+  {"appId": "durgerkingbot", "userId": "2", "rating": 4},
+  {"appId": "durgerkingbot", "userId": "3", "rating": 4},
+  {"appId": "durgerkingbot", "userId": "4", "rating": 4},
+  {"appId": "durgerkingbot", "userId": "5", "rating": 4},
+  {"appId": "wallet", "userId": "1", "rating": 4},
+  {"appId": "wallet", "userId": "2", "rating": 5},
+  {"appId": "wallet", "userId": "3", "rating": 3},
+  {"appId": "wallet", "userId": "4", "rating": 4},
+  {"appId": "wallet", "userId": "5", "rating": 5},
+  {"appId": "wallet", "userId": "6", "rating": 4},
+  {"appId": "wallet", "userId": "7", "rating": 4},
+  {"appId": "wallet", "userId": "8", "rating": 5},
+  {"appId": "wallet", "userId": "9", "rating": 5}
+]
