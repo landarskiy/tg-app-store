@@ -20,3 +20,4 @@ Install addon: https://chrome.google.com/webstore/detail/cors-unblock/lfhmikemem
 Recommended to disable by defauls
 
 Setup heroku with subdir plugin
+Install java 17 in heroku

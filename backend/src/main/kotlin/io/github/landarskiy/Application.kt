@@ -12,5 +12,6 @@ fun main(args: Array<String>) : Unit = EngineMain.main(args)
 fun Application.module() {
     configureRepository()
     configureRouting()
+    configureCors()
     configureSerialization()
 }
