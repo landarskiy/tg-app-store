@@ -1,1 +1,1 @@
-rootProject.name = "io.github.landarskiy.tgappstore"
+rootProject.name = "tgappstore"
