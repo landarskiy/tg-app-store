@@ -18,3 +18,5 @@ open /Applications/Google\ Chrome.app/ -n --args --disable-web-security
 
 Install addon: https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino?hl=pl
 Recommended to disable by defauls
+
+Setup heroku with subdir plugin
