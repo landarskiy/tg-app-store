@@ -17,7 +17,7 @@ function appItemView(id, imgUrl, title, category, tags, rating, bookmarked, onCl
         <div class="${cssItemAppContent}" style="margin-left: 16px">
             <div class="${cssTextTitleMedium}">${title}</div>
             <div class="${cssTextBodyMedium}" style="margin-top: 4px; margin-bottom: 2px">${buildCategoriesLine(category, tags)}</div>
-            <div class="${cssTextBodyMedium}">${rating} ★${bookmarkTag}</div>
+            <div class="${cssTextBodyMedium}">${rating.toFixed(1)} ★${bookmarkTag}</div>
         </div>
     </div>
     `;

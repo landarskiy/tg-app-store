@@ -130,7 +130,7 @@ function loadAppDetails(app) {
 function bookmarkApp(appDetails) {
     bookmarkAppDelegate(
         window.Telegram.WebApp.initDataUnsafe?.user?.id, 
-        app.id,
+        appDetails.id,
         !appDetails.fav,
         window.Telegram.WebApp.initData,
         data => {

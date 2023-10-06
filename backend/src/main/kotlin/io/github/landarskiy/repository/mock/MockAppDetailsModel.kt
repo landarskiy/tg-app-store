@@ -1,13 +1,16 @@
 package io.github.landarskiy.repository.mock
 
+import io.github.landarskiy.repository.model.AppDetailsModel
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class MockAppDetailsModel(
     @SerialName("id")
     val id: String,
     @SerialName("iconUrl")
     val iconUrl: String,
-    @SerialName("screenshotUrlList")
+    @SerialName("screenshots")
     val screenshotUrlList: List<String>,
     @SerialName("botAppUrl")
     val botAppUrl: String,
@@ -20,3 +23,18 @@ data class MockAppDetailsModel(
     @SerialName("tags")
     val tags: List<String>
 )
+
+fun MockAppDetailsModel.toAppDetailsModel(): AppDetailsModel {
+    return AppDetailsModel(
+        id = id,
+        iconUrl = iconUrl,
+        screenshotUrlList = screenshotUrlList,
+        botAppUrl = botAppUrl,
+        title = title,
+        description = description,
+        category = category,
+        tags = tags,
+        rating = 0f,
+        rateCount = 0
+    )
+}

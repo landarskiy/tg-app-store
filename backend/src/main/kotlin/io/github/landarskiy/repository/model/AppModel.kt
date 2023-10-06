@@ -5,7 +5,7 @@ data class AppModel(
     val iconUrl: String,
     val title: String,
     val rating: Float,
-    val rateCount: Long,
+    val rateCount: Int,
     val category: String,
     val tags: List<String>
 )

@@ -2,7 +2,6 @@
   {
     "id": "durgerkingbot",
     "iconUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/icon-durger.jpeg",
-    "imageUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/app-durger.jpg",
     "screenshots": [
       "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/app-durger.jpg",
       "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/app-durger.jpg",
@@ -18,7 +17,6 @@
   {
     "id": "wallet",
     "iconUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/icon-wallet.jpeg",
-    "imageUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/app-wallet.jpg",
     "screenshots": [
       "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/app-wallet.jpg",
       "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/app-wallet.jpg",

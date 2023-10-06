@@ -1,11 +1,7 @@
 package io.github.landarskiy.repository
 
 interface UserRepository {
-    fun getUserAppBookmarks(userId: String): List<String>
+    fun getUserAppBookmarks(userId: String): Set<String>
 
-    fun addUserAppBookmark(userId: String, appId: String)
-
-    fun removeUserAppBookmark(userId: String, appId: String)
-
-    fun getUserAppRatings(userId: String): Map<String, Int>
+    fun updateAppBookmark(userId: String, appId: String, bookmarked: Boolean)
 }
