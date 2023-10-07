@@ -1,13 +1,13 @@
 package io.github.landarskiy.handler
 
 import io.github.landarskiy.handler.model.NetworkAppModel
+import io.github.landarskiy.handler.util.InitDataParser
 import io.github.landarskiy.repository.AppRepository
 import io.github.landarskiy.repository.AppRepository.Companion.CATEGORY_ID_ALL
 import io.github.landarskiy.repository.AppRepository.Companion.CATEGORY_ID_BOOKMARKED
 import io.github.landarskiy.repository.UserRepository
 import io.ktor.http.*
 import io.ktor.server.application.*
-import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.util.logging.*
 import kotlinx.serialization.encodeToString
@@ -19,7 +19,8 @@ class AppListRequestHandler(
     private val userRepository: UserRepository
 ) : RequestHandler {
     override suspend fun handle(call: ApplicationCall) {
-        log.info("Call from: ${call.receiveText()}")
+        val initDataModel = InitDataParser.parseInitData(call)
+        log.info("Call from: ${initDataModel?.decodedData}")
         val userId = call.parameters["user_id"]
         val categoryId = call.parameters["category_id"] ?: CATEGORY_ID_ALL
         val userBookmarkedApps = userId?.let { userRepository.getUserAppBookmarks(it) } ?: emptySet()
