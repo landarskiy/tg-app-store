@@ -20,7 +20,8 @@ class AppListRequestHandler(
 ) : RequestHandler {
     override suspend fun handle(call: ApplicationCall) {
         val initDataModel = InitDataParser.parseInitData(call)
-        log.info("Call from: ${initDataModel?.decodedData}")
+        log.info("Raw init data: ${initDataModel?.rawData}")
+        log.info("Decoded init data: ${initDataModel?.decodedData}")
         val userId = call.parameters["user_id"]
         val categoryId = call.parameters["category_id"] ?: CATEGORY_ID_ALL
         val userBookmarkedApps = userId?.let { userRepository.getUserAppBookmarks(it) } ?: emptySet()
