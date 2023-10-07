@@ -5,13 +5,15 @@ import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
 class UserDataValidator(private val telegramBotToken: String) {
-    private fun isValid(
-        msg: String
-    ): String {
-        val signingKey = SecretKeySpec(msg.toByteArray(), "HmacSHA256")
-        val mac = Mac.getInstance(alg)
+    fun isValid(msg: String): Boolean {
+        return false
+    }
+    
+    private fun hmacDigest(msg: String): String {
+        val algorithm = "HmacSHA256"
+        val signingKey = SecretKeySpec(msg.toByteArray(), algorithm)
+        val mac = Mac.getInstance(algorithm)
         mac.init(signingKey)
-
         val bytes = mac.doFinal(msg.toByteArray())
         return format(bytes)
     }
