@@ -48,7 +48,7 @@ class InitDataParser(private val log: Logger, botToken: String) {
             return InitDataModel(
                 InitDataUserModel(
                     id = networkUserData.id.toString(),
-                    isPremium = networkUserData.premium == true
+                    isPremium = networkUserData.premium
                 )
             )
         } catch (e: Throwable) {

@@ -8,7 +8,7 @@ data class NetworkInitDataUserModel(
     @SerialName("id")
     val id: Long,
     @SerialName("is_premium")
-    val premium: Boolean?,
+    val premium: Boolean = false,
     @SerialName("allows_write_to_pm")
-    val allowsWriteToPm: Boolean?
+    val allowsWriteToPm: Boolean = false
 )
