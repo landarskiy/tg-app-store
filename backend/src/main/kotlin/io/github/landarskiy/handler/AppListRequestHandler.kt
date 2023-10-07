@@ -7,6 +7,7 @@ import io.github.landarskiy.repository.AppRepository.Companion.CATEGORY_ID_BOOKM
 import io.github.landarskiy.repository.UserRepository
 import io.ktor.http.*
 import io.ktor.server.application.*
+import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.util.logging.*
 import kotlinx.serialization.encodeToString
@@ -18,7 +19,7 @@ class AppListRequestHandler(
     private val userRepository: UserRepository
 ) : RequestHandler {
     override suspend fun handle(call: ApplicationCall) {
-        log.info("Call from: ${call.parameters["init_data"]}")
+        log.info("Call from: ${call.receiveText()}")
         val userId = call.parameters["user_id"]
         val categoryId = call.parameters["category_id"] ?: CATEGORY_ID_ALL
         val userBookmarkedApps = userId?.let { userRepository.getUserAppBookmarks(it) } ?: emptySet()
