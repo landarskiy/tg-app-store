@@ -42,7 +42,7 @@ class InitDataParser(private val log: Logger, botToken: String) {
 
             return InitDataModel(
                 InitDataUserModel(
-                    id = networkUserData.id,
+                    id = networkUserData.id.toString(),
                     isPremium = networkUserData.premium == true
                 )
             )

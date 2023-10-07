@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class NetworkInitDataUserModel(
     @SerialName("id")
-    val id: String,
+    val id: Int,
     @SerialName("is_premium")
     val premium: Boolean?,
     @SerialName("allows_write_to_pm")
