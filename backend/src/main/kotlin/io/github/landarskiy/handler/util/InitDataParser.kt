@@ -15,10 +15,13 @@ import javax.crypto.spec.SecretKeySpec
 class InitDataParser(private val log: Logger, botToken: String) {
 
     private val secretKey = calcHmacSha256(msg = botToken.toByteArray(), key = "WebAppData".toByteArray())
+    private val json = Json {
+        ignoreUnknownKeys = true
+    }
 
     suspend fun parseInitData(call: ApplicationCall): InitDataModel? {
         return try {
-            val networkInitData = Json.decodeFromString<NetworkInitDataModel>(call.receiveText())
+            val networkInitData = json.decodeFromString<NetworkInitDataModel>(call.receiveText())
             val rawInitData = networkInitData.rawInitData
             if (rawInitData == null) {
                 log.info("Init data is null")
@@ -40,8 +43,7 @@ class InitDataParser(private val log: Logger, botToken: String) {
                 log.info("Raw user data not found")
                 return null
             }
-
-            val networkUserData = Json.decodeFromString<NetworkInitDataUserModel>(rawUserDara)
+            val networkUserData = json.decodeFromString<NetworkInitDataUserModel>(rawUserDara)
 
             return InitDataModel(
                 InitDataUserModel(
