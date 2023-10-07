@@ -27,8 +27,6 @@ class UserAppBookmarkUpdateRequestHandler(
             userRepository.updateAppBookmark(userId = userId, appId = appId, bookmarked = bookmarked.toBoolean())
             NetworkBookmarkResponseModel(id = appId, bookmarked = bookmarked.toBoolean())
         }
-        call.respondText(
-            Json.encodeToString(result), ContentType.Application.Json, HttpStatusCode.OK
-        )
+        call.respondText(Json.encodeToString(result), ContentType.Application.Json, HttpStatusCode.OK)
     }
 }

@@ -15,9 +15,9 @@ fun Application.configureRouting() {
     log.info("Telegram bot token loaded, hash: ${telegramBotToken.hashCode()}")
     val initDataParser = InitDataParser(log, telegramBotToken)
     val appListRequestHandler = AppListRequestHandler(log, appRepository, userRepository, initDataParser)
-    val appDetailsRequestHandler = AppDetailsRequestHandler(appRepository, userRepository, initDataParser)
+    val appDetailsRequestHandler = AppDetailsRequestHandler(log, appRepository, userRepository, initDataParser)
     val userAppBookmarkUpdateRequestHandler = UserAppBookmarkUpdateRequestHandler(log, userRepository, initDataParser)
-    val appRatingUpdateRequestHandler = AppRatingUpdateRequestHandler(appRepository, initDataParser)
+    val appRatingUpdateRequestHandler = AppRatingUpdateRequestHandler(log, appRepository, initDataParser)
     routing {
         route("/app/list") {
             post {
