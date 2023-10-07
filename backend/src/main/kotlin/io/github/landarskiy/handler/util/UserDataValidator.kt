@@ -6,7 +6,10 @@ import javax.crypto.spec.SecretKeySpec
 
 class UserDataValidator(private val telegramBotToken: String) {
 
-    fun parse()
+    fun parse() {
+        
+    }
+
     fun isValid(msg: String): Boolean {
         return false
     }
