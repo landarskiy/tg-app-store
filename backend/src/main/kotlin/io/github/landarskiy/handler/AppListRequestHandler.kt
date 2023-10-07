@@ -8,14 +8,17 @@ import io.github.landarskiy.repository.UserRepository
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
+import io.ktor.util.logging.*
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 class AppListRequestHandler(
+    private val log: Logger,
     private val appRepository: AppRepository,
     private val userRepository: UserRepository
 ) : RequestHandler {
     override suspend fun handle(call: ApplicationCall) {
+        log.info("Call from: ${call.parameters["init_data"]}")
         val userId = call.parameters["user_id"]
         val categoryId = call.parameters["category_id"] ?: CATEGORY_ID_ALL
         val userBookmarkedApps = userId?.let { userRepository.getUserAppBookmarks(it) } ?: emptySet()
