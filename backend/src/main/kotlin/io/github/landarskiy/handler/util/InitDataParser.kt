@@ -34,6 +34,8 @@ class InitDataParser(private val log: Logger, botToken: String) {
             if (expectedHash != dataHash) {
                 log.info("Invalid signature for init data: $rawInitData")
                 return null
+            } else {
+                log.info("Successfully validated data: $dataCheckString")
             }
             val rawUserDara = decodedWithoutHash.find { it.startsWith("user=") } ?: return null
             val networkUserData = Json.decodeFromString<NetworkInitDataUserModel>(rawUserDara)
