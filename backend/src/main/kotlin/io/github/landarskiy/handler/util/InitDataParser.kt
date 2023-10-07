@@ -14,7 +14,7 @@ import javax.crypto.spec.SecretKeySpec
 
 class InitDataParser(private val log: Logger, botToken: String) {
 
-    val secretKey = calcHmacSha256(msg = botToken.toByteArray(), key = "WebAppData".toByteArray())
+    private val secretKey = calcHmacSha256(msg = botToken.toByteArray(), key = "WebAppData".toByteArray())
 
     suspend fun parseInitData(call: ApplicationCall): InitDataModel? {
         return try {
@@ -50,6 +50,7 @@ class InitDataParser(private val log: Logger, botToken: String) {
                 )
             )
         } catch (e: Throwable) {
+            log.error(e)
             null
         }
     }
