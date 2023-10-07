@@ -1,6 +1,7 @@
 package io.github.landarskiy.handler
 
 import io.github.landarskiy.handler.model.NetworkAppDetailsModel
+import io.github.landarskiy.handler.util.InitDataParser
 import io.github.landarskiy.repository.AppRepository
 import io.github.landarskiy.repository.UserRepository
 import io.ktor.http.*
@@ -11,7 +12,8 @@ import kotlinx.serialization.json.Json
 
 class AppDetailsRequestHandler(
     private val appRepository: AppRepository,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val initDataParser: InitDataParser
 ) : RequestHandler {
     override suspend fun handle(call: ApplicationCall) {
         val appId = call.parameters["id"]

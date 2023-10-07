@@ -1,12 +1,14 @@
 package io.github.landarskiy.handler
 
+import io.github.landarskiy.handler.util.InitDataParser
 import io.github.landarskiy.repository.AppRepository
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 
 class AppRatingUpdateRequestHandler(
-    private val appRepository: AppRepository
+    private val appRepository: AppRepository,
+    private val initDataParser: InitDataParser
 ) : RequestHandler {
     override suspend fun handle(call: ApplicationCall) {
         val appId = call.parameters["appId"]

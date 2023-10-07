@@ -16,13 +16,13 @@ import kotlinx.serialization.json.Json
 class AppListRequestHandler(
     private val log: Logger,
     private val appRepository: AppRepository,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val initDataParser: InitDataParser
 ) : RequestHandler {
     override suspend fun handle(call: ApplicationCall) {
-        val initDataModel = InitDataParser.parseInitData(call)
-        log.info("Raw init data: ${initDataModel?.rawData}")
-        log.info("Decoded init data: ${initDataModel?.decodedData}")
-        val userId = call.parameters["user_id"]
+        val initDataModel = initDataParser.parseInitData(call)
+        val userId = initDataModel?.userModel?.id
+        log.info("Call from user: $userId")
         val categoryId = call.parameters["category_id"] ?: CATEGORY_ID_ALL
         val userBookmarkedApps = userId?.let { userRepository.getUserAppBookmarks(it) } ?: emptySet()
         val rawApps = when (categoryId) {

@@ -1,12 +1,14 @@
 package io.github.landarskiy.handler
 
+import io.github.landarskiy.handler.util.InitDataParser
 import io.github.landarskiy.repository.UserRepository
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 
 class UserAppBookmarkUpdateRequestHandler(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val initDataParser: InitDataParser
 ) : RequestHandler {
     override suspend fun handle(call: ApplicationCall) {
         val userId = call.parameters["userId"]

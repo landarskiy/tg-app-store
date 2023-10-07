@@ -4,16 +4,20 @@ import io.github.landarskiy.handler.AppDetailsRequestHandler
 import io.github.landarskiy.handler.AppListRequestHandler
 import io.github.landarskiy.handler.AppRatingUpdateRequestHandler
 import io.github.landarskiy.handler.UserAppBookmarkUpdateRequestHandler
+import io.github.landarskiy.handler.util.InitDataParser
 import io.github.landarskiy.repository.appRepository
 import io.github.landarskiy.repository.userRepository
 import io.ktor.server.application.*
 import io.ktor.server.routing.*
 
 fun Application.configureRouting() {
-    val appListRequestHandler = AppListRequestHandler(log, appRepository, userRepository)
-    val appDetailsRequestHandler = AppDetailsRequestHandler(appRepository, userRepository)
-    val userAppBookmarkUpdateRequestHandler = UserAppBookmarkUpdateRequestHandler(userRepository)
-    val appRatingUpdateRequestHandler = AppRatingUpdateRequestHandler(appRepository)
+    val telegramBotToken = System.getenv("TELEGRAM_BOT_TOKEN") ?: ""
+    log.info("Telegram bot token loaded, hash: ${telegramBotToken.hashCode()}")
+    val initDataParser = InitDataParser(log, telegramBotToken)
+    val appListRequestHandler = AppListRequestHandler(log, appRepository, userRepository, initDataParser)
+    val appDetailsRequestHandler = AppDetailsRequestHandler(appRepository, userRepository, initDataParser)
+    val userAppBookmarkUpdateRequestHandler = UserAppBookmarkUpdateRequestHandler(userRepository, initDataParser)
+    val appRatingUpdateRequestHandler = AppRatingUpdateRequestHandler(appRepository, initDataParser)
     routing {
         route("/app/list") {
             post {
