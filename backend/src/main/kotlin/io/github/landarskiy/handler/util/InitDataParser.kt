@@ -19,7 +19,11 @@ class InitDataParser(private val log: Logger, botToken: String) {
     suspend fun parseInitData(call: ApplicationCall): InitDataModel? {
         return try {
             val networkInitData = Json.decodeFromString<NetworkInitDataModel>(call.receiveText())
-            val rawInitData = networkInitData.rawInitData ?: return null
+            val rawInitData = networkInitData.rawInitData
+            if (rawInitData == null) {
+                log.info("Init data is null")
+                return null
+            }
 
             val decodedParams = rawInitData.split("&").map { URLDecoder.decode(it, Charsets.UTF_8) }
             val expectedHash = decodedParams.first { it.startsWith("hash=") }?.replaceFirst("hash=", "")
