@@ -22,7 +22,13 @@ class AppRatingUpdateRequestHandler(
         val appId = call.parameters["appId"]
         val rating = call.parameters["rating"]?.toIntOrNull()
         val result = if (userId == null || appId == null || rating == null || rating !in 1..5) {
-            NetworkRateResponseModel(id = appId ?: "", rating = 0f, userRating = rating ?: 0, rateCount = 0)
+            val appDetails = appId?.let { appRepository.getAppDetails(it) }
+            NetworkRateResponseModel(
+                id = appId ?: "",
+                rating = appDetails?.rating ?: 0f,
+                userRating = -1,
+                rateCount = appDetails?.rateCount ?: 0
+            )
         } else {
             appRepository.updateUserRating(userId = userId, appId = appId, rating = rating)
             val appDetails = appRepository.getAppDetails(appId)
