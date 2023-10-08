@@ -36,9 +36,9 @@ function appDetailsItemView(id, imgUrl, title, category, tags) {
 }
 
 function buildCategoriesLine(category, tags) {
-    let categoriesLine = category;
+    let categoriesLine = category.value;
     for (let i = 0; i < tags.length; i++) {
-        categoriesLine += " • " + tags[i];
+        categoriesLine += " • " + tags[i].value;
     }
     return categoriesLine;
 }

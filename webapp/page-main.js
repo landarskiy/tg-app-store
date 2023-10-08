@@ -8,7 +8,7 @@ const categoriesList = [
     new DisplayValue("games", "Games"),
     new DisplayValue("utilities", "Utilities")
 ];
-let selectedCategoryId = categoriesList[1].value;
+let selectedCategoryId = categoriesList[1].key;
 
 function displayMainPage() {
     replaceTopPage("main-page", mainPage());
