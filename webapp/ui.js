@@ -7,18 +7,24 @@ function pageView(id, content) {
 }
 
 function appItemView(id, imgUrl, title, category, tags, rating, bookmarked, onClickCallbackName) {
+    return `
+    <div id="app-${id}" class="${cssItemApp}" onclick="${onClickCallbackName}(${id})">
+        ${appItemViewContent(imgUrl, title, category, tags, rating, bookmarked)}
+    </div>
+    `;
+}
+
+function appItemViewContent(imgUrl, title, category, tags, rating, bookmarked) {
     let bookmarkTag = "";
     if(bookmarked) {
         bookmarkTag = " • Bookmarked";
     }
     return `
-    <div id="app-${id}" class="${cssItemApp}" onclick="${onClickCallbackName}(${id})">
-        ${smallRoundedSquareImageView(imgUrl)}
-        <div class="${cssItemAppContent}" style="margin-left: 16px">
-            <div class="${cssTextTitleMedium}">${title}</div>
-            <div class="${cssTextBodyMedium}" style="margin-top: 4px; margin-bottom: 2px">${buildCategoriesLine(category, tags)}</div>
-            <div class="${cssTextBodyMedium}">${rating.toFixed(1)} ★${bookmarkTag}</div>
-        </div>
+    ${smallRoundedSquareImageView(imgUrl)}
+    <div class="${cssItemAppContent}" style="margin-left: 16px">
+        <div class="${cssTextTitleMedium}">${title}</div>
+        <div class="${cssTextBodyMedium}" style="margin-top: 4px; margin-bottom: 2px">${buildCategoriesLine(category, tags)}</div>
+        <div class="${cssTextBodyMedium}">${rating.toFixed(1)} ★${bookmarkTag}</div>
     </div>
     `;
 }

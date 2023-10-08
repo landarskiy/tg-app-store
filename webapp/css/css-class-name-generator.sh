@@ -9,7 +9,7 @@ echo "// Generated class names from $css_file" > "$js_file"
 exists_constants=""
 for class_name in $class_names; do
     class_name="${class_name#.}"
-    #make const in snake case
+    #make const in camel case
     IFS='-' read -ra parts <<< "$class_name"
     const_name=""
     for part in "${parts[@]}"; do

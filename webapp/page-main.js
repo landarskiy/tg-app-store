@@ -24,13 +24,13 @@ function mainPage() {
 }
 
 function onAppClicked(appIndex) {
-    if(appIndex < appsList.length) {
+    if (appIndex < appsList.length) {
         displayAppPage(appsList[appIndex]);
     }
 }
 
 function onCategoryClicked(categoryId) {
-    if(categoryId == selectedCategoryId) {
+    if (categoryId == selectedCategoryId) {
         return;
     }
     unselectCategoryOnUi(selectedCategoryId);
@@ -42,8 +42,8 @@ function onCategoryClicked(categoryId) {
 function selectCategoryOnUi(categoryId) {
     removeClassFromElement(`category-${categoryId}`, cssButtonActionSecondary);
     removeClassFromElement(`category-${categoryId}`, cssButtonRippleSecondary);
-    addClassToElement(`category-${categoryId}`,cssButtonActionPrimary);
-    addClassToElement(`category-${categoryId}`,cssButtonRipplePrimary);
+    addClassToElement(`category-${categoryId}`, cssButtonActionPrimary);
+    addClassToElement(`category-${categoryId}`, cssButtonRipplePrimary);
 }
 
 function unselectCategoryOnUi(categoryId) {
@@ -62,22 +62,45 @@ function displayApps(apps) {
     replaceInElement("apps-container", displayContent);
     appsList = apps;
 
-    if(firstDisplay) {
+    if (firstDisplay) {
         Telegram.WebApp.expand();
-        firstDisplay =  false;
+        firstDisplay = false;
     }
+}
+
+function pageMainBookmarkChanged(appDetails, addToBookmarksResponse) {
+    if (selectedCategoryId == "all") {
+        loadApps(selectedCategoryId);
+        return;
+    } 
+    let appIndex = findAppIndexById(appDetails.id);
+    if (appIndex == -1) {
+        return;
+    }
+    let app = appsList[appIndex];
+    app.fav = addToBookmarksResponse.fav;
+    replaceInElement(`app-${appIndex}`, appItemViewContent(app.iconUrl, app.title, app.category, app.tags, app.rating, app.fav));
+}
+
+function findAppIndexById(appId) {
+    for (let i = 0; i < appsList.length; i++) {
+        if (appsList[i].id == appId) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 // Network
 
 function loadApps(category) {
     loadAppListDelegate(
-        window.Telegram.WebApp.initDataUnsafe?.user?.id, 
+        window.Telegram.WebApp.initDataUnsafe?.user?.id,
         category,
-        window.Telegram.WebApp.initData,
+        initDataProviderDelegate(),
         data => {
             displayApps(data);
         },
-        error => {}
+        error => { }
     );
 }

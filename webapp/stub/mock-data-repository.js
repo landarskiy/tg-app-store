@@ -54,7 +54,7 @@ const jsonMockAppList = `
         "id": "durgerkingbot",
         "iconUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/icon-durger.jpeg",
         "title": "Durger King",
-        "rating": "4.2",
+        "rating": 4.2,
         "rateCount": 6,
         "category": { "key": "food", "value": "Food" },
         "tags": [ { "key": "fast_food", "value": "Fast food" } ]
@@ -63,7 +63,7 @@ const jsonMockAppList = `
         "id": "wallet",
         "iconUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/icon-wallet.jpeg",
         "title": "Wallet",
-        "rating": "4.9",
+        "rating": 4.9,
         "rateCount": 12,
         "category": { "key": "finance", "value": "Finance" },
         "tags": [ { "key": "wallet", "value": "Wallet" } ]
@@ -86,7 +86,7 @@ const jsonMockAppDetails = `
         "botAppUrl": "https://t.me/durgerkingbot/menu",
         "title": "Durger King",
         "description": "Use this bot to order fictional fast food – the only fast food that is good for your health!",
-        "rating": "4.2",
+        "rating": 4.2,
         "rateCount": 6,
         "category": { "key": "food", "value": "Food" },
         "tags": [ { "key": "fast_food", "value": "Fast food" } ]
@@ -103,7 +103,7 @@ const jsonMockAppDetails = `
         "botAppUrl": "https://t.me/wallet/start",
         "title": "Wallet",
         "description": "Purchase cryptocurrency by bank card, exchange, and transfer to other wallets.",
-        "rating": "4.9",
+        "rating": 4.9,
         "rateCount": 12,
         "category": { "key": "finance", "value": "Finance" },
         "tags": [ { "key": "wallet", "value": "Wallet" } ]

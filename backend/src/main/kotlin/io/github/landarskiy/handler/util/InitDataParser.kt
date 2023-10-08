@@ -26,6 +26,8 @@ class InitDataParser(private val log: Logger, botToken: String) {
             if (rawInitData == null) {
                 log.info("Init data is null")
                 return null
+            } else {
+                log.info("Init data received: $rawInitData")
             }
 
             val decodedParams = rawInitData.split("&").map { URLDecoder.decode(it, Charsets.UTF_8) }

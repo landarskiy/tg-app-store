@@ -117,7 +117,7 @@ function loadAppDetails(app) {
     loadAppDetailsDelegate(
         window.Telegram.WebApp.initDataUnsafe?.user?.id,
         app.id,
-        window.Telegram.WebApp.initData,
+        initDataProviderDelegate(),
         data => {
             displayAppDetails(data);
         },
@@ -126,31 +126,43 @@ function loadAppDetails(app) {
 }
 
 function bookmarkApp(appDetails) {
+    const newFav = !appDetails.fav;
+    appDetails.fav = newFav;
+    updateBookmarkState();
     bookmarkAppDelegate(
         window.Telegram.WebApp.initDataUnsafe?.user?.id,
         appDetails.id,
-        !appDetails.fav,
-        window.Telegram.WebApp.initData,
-        data => {
-            appDetails.fav = data.fav;
-            updateBookmarkState();
+        newFav,
+        initDataProviderDelegate(),
+        data => { 
+            pageAppBookmarkChanged(appDetails, data); 
+            pageMainBookmarkChanged(appDetails, data);
         },
         error => { }
     );
 }
 
+function pageAppBookmarkChanged(appDetails, addToBookmarksResponse) {
+    appDetails.fav = addToBookmarksResponse.fav;
+    updateBookmarkState();
+}
+
 function rateApp(appDetails, rating) {
+    appDetails.userRating = rating;
+    updateRatingState();
     rateAppDelegate(
         window.Telegram.WebApp.initDataUnsafe?.user?.id,
         appDetails.id,
         rating,
-        window.Telegram.WebApp.initData,
-        data => {
-            appDetails.rating = data.rating;
-            appDetails.rateCount = data.rateCount;
-            appDetails.userRating = data.userRating;
-            updateRatingState();
-        },
+        initDataProviderDelegate(),
+        data => { pageAppRatingChanged(appDetails, data); },
         error => { }
     )
+}
+
+function pageAppRatingChanged(appDetails, rateAppResponse) {
+    appDetails.rating = rateAppResponse.rating;
+    appDetails.rateCount = rateAppResponse.rateCount;
+    appDetails.userRating = rateAppResponse.userRating;
+    updateRatingState();
 }

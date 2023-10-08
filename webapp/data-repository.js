@@ -1,3 +1,8 @@
+/**
+ * Add to call initData structure
+ * 
+ * @param {*} initData - init data string
+ */
 function buildInitDataPostParams(initData) {
     return {
         method: 'POST',
@@ -66,6 +71,10 @@ let rateAppDelegate = function rateApp(userId, appId, rating, initData, successC
     }).catch(error => {
         failCallback(error);
     });
+}
+
+let initDataProviderDelegate = function initData() {
+    return window.Telegram.WebApp.initData;
 }
 
 class AppsResponse {
