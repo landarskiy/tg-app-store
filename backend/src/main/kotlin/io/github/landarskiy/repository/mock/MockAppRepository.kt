@@ -20,19 +20,15 @@ class MockAppRepository(private val log: Logger) : AppRepository {
 
     init {
         log.debug("Repository initialization started")
-        val appList = Json.decodeFromStream<List<MockAppModel>>(requiredStream("mock-app-list.json"))
         val appDetailsList = Json.decodeFromStream<List<MockAppDetailsModel>>(requiredStream("mock-app-details.json"))
         val appRatingList = Json.decodeFromStream<List<MockAppUserRatingModel>>(requiredStream("mock-app-rating.json"))
         appRatingList.forEach { rating ->
             userRatingMap[getUserRatingKey(userId = rating.userId, appId = rating.appId)] =
                 rating.toAppUserRatingModel()
         }
-        appList.forEach { app ->
-            val rating = calculateAppRating(app.id)
-            appMap[app.id] = app.toAppModel().copy(rating = rating.second, rateCount = rating.first)
-        }
         appDetailsList.forEach { app ->
             val rating = calculateAppRating(app.id)
+            appMap[app.id] = app.toAppModel().copy(rating = rating.second, rateCount = rating.first)
             appDetailsMap[app.id] = app.toAppDetailsModel().copy(rating = rating.second, rateCount = rating.first)
         }
         log.debug("Repository initialization finished")
@@ -64,10 +60,12 @@ class MockAppRepository(private val log: Logger) : AppRepository {
 
     override fun updateUserRating(userId: String, appId: String, rating: Int) {
         val appDetails = appDetailsMap[appId] ?: return
+        val app = appMap[appId] ?: return
         userRatingMap[getUserRatingKey(userId = userId, appId = appId)] =
             AppUserRatingModel(appId = appId, userId = userId, rating = rating)
         val newRating: Pair<Int, Float> = calculateAppRating(appId)
         appDetailsMap[appId] = appDetails.copy(rating = newRating.second, rateCount = newRating.first)
+        appMap[appId] = app.copy(rating = newRating.second, rateCount = newRating.first)
     }
 
     private fun calculateAppRating(appId: String): Pair<Int, Float> {
