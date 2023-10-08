@@ -70,7 +70,7 @@ function screenshotPreviewImageView(url) {
 
 function categoryChipView(id, displayValue, onClickCallbackName) {
     return `
-    <button id="category-${id}" class="${cssButtonAction} ${cssButtonActionSecondary} ${cssButtonRipplePrimary} ${cssItemInScrollHContentSize}" onClick="${onClickCallbackName}('${id}')"">${displayValue.displayText}</button>
+    <button id="category-${id}" class="${cssButtonAction} ${cssButtonActionSecondary} ${cssButtonRipplePrimary} ${cssItemInScrollHContentSize}" onClick="${onClickCallbackName}('${id}')"">${displayValue.value}</button>
     `;
 }
 
@@ -100,7 +100,7 @@ function categoryBarView(id, categories, onClickCallbackName) {
     for (let i = 0; i < categories.length; i++) {
         const category = categories[i];
         categoriesLine += `\n
-        ${categoryChipView(category.value, category, onClickCallbackName)}
+        ${categoryChipView(category.key, category, onClickCallbackName)}
         `;
     }
     return `

@@ -13,9 +13,9 @@ data class MockAppModel(
     @SerialName("title")
     val title: String,
     @SerialName("category")
-    val category: String,
+    val category: MockI18nModel,
     @SerialName("tags")
-    val tags: List<String>
+    val tags: List<MockI18nModel>
 )
 
 fun MockAppModel.toAppModel(): AppModel {
@@ -23,8 +23,8 @@ fun MockAppModel.toAppModel(): AppModel {
         id = id,
         iconUrl = iconUrl,
         title = title,
-        category = category,
-        tags = tags,
+        category = category.toI18nModel(),
+        tags = tags.map { it.toI18nModel() },
         rating = 0f,
         rateCount = 0
     )

@@ -25,9 +25,9 @@ data class NetworkAppDetailsModel(
     @SerialName("rateCount")
     val rateCount: Int,
     @SerialName("category")
-    val category: String,
+    val category: NetworkI18nModel,
     @SerialName("tags")
-    val tags: List<String>,
+    val tags: List<NetworkI18nModel>,
     @SerialName("fav")
     val bookmarked: Boolean
 ) {
@@ -40,8 +40,8 @@ data class NetworkAppDetailsModel(
                 botAppUrl = model.botAppUrl,
                 title = model.title,
                 description = model.description,
-                category = model.category,
-                tags = model.tags,
+                category = NetworkI18nModel.fromModel(model.category),
+                tags = model.tags.map { NetworkI18nModel.fromModel(it) },
                 rating = model.rating,
                 rateCount = model.rateCount,
                 userRating = -1,

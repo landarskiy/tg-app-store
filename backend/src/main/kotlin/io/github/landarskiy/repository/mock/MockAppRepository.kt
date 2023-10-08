@@ -55,7 +55,7 @@ class MockAppRepository(private val log: Logger) : AppRepository {
     }
 
     override fun getApps(categoryId: String): List<AppModel> {
-        return getAppsByFilter { app: AppModel -> app.category == categoryId }
+        return getAppsByFilter { app: AppModel -> app.category.key == categoryId }
     }
 
     override fun getAppDetails(appId: String): AppDetailsModel? {

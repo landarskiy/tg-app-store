@@ -11,8 +11,8 @@
     "botAppUrl": "https://t.me/durgerkingbot/menu",
     "title": "Durger King",
     "description": "Use this bot to order fictional fast food – the only fast food that is good for your health!",
-    "category": "Food",
-    "tags": ["Fast food"]
+    "category": { "key": "food", "value": "Food" },
+    "tags": [ { "key": "fast_food", "value": "Fast food" } ]
   },
   {
     "id": "wallet",
@@ -25,7 +25,7 @@
     "botAppUrl": "https://t.me/wallet/start",
     "title": "Wallet",
     "description": "Purchase cryptocurrency by bank card, exchange, and transfer to other wallets.",
-    "category": "Finance",
-    "tags": [ "Wallet" ]
+    "category": { "key": "finance", "value": "Finance" },
+    "tags": [ { "key": "wallet", "value": "Wallet" } ]
   }
 ]

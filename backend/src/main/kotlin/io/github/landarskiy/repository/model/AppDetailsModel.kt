@@ -9,6 +9,6 @@ data class AppDetailsModel(
     val description: String,
     val rating: Float,
     val rateCount: Int,
-    val category: String,
-    val tags: List<String>
+    val category: I18nModel,
+    val tags: List<I18nModel>
 )

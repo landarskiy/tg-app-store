@@ -56,8 +56,8 @@ const jsonMockAppList = `
         "title": "Durger King",
         "rating": "4.2",
         "rateCount": 6,
-        "category": "Food",
-        "tags": ["Fast food"]
+        "category": { "key": "food", "value": "Food" },
+        "tags": [ { "key": "fast_food", "value": "Fast food" } ]
     },
     {
         "id": "wallet",
@@ -65,8 +65,8 @@ const jsonMockAppList = `
         "title": "Wallet",
         "rating": "4.9",
         "rateCount": 12,
-        "category": "Finance",
-        "tags": [ "Wallet" ]
+        "category": { "key": "finance", "value": "Finance" },
+        "tags": [ { "key": "wallet", "value": "Wallet" } ]
     }
 ]
 `;
@@ -88,8 +88,8 @@ const jsonMockAppDetails = `
         "description": "Use this bot to order fictional fast food – the only fast food that is good for your health!",
         "rating": "4.2",
         "rateCount": 6,
-        "category": "Food",
-        "tags": ["Fast food"]
+        "category": { "key": "food", "value": "Food" },
+        "tags": [ { "key": "fast_food", "value": "Fast food" } ]
     },
     {
         "id": "wallet",
@@ -105,8 +105,8 @@ const jsonMockAppDetails = `
         "description": "Purchase cryptocurrency by bank card, exchange, and transfer to other wallets.",
         "rating": "4.9",
         "rateCount": 12,
-        "category": "Finance",
-        "tags": [ "Wallet" ]
+        "category": { "key": "finance", "value": "Finance" },
+        "tags": [ { "key": "wallet", "value": "Wallet" } ]
     }    
 ]
 `;

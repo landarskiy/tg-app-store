@@ -3,14 +3,14 @@
     "id": "durgerkingbot",
     "iconUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/icon-durger.jpeg",
     "title": "Durger King",
-    "category": "Food",
-    "tags": ["Fast food"]
+    "category": { "key": "food", "value": "Food" },
+    "tags": [ { "key": "fast_food", "value": "Fast food" } ]
   },
   {
     "id": "wallet",
     "iconUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/icon-wallet.jpeg",
     "title": "Wallet",
-    "category": "Finance",
-    "tags": [ "Wallet" ]
+    "category": { "key": "finance", "value": "Finance" },
+    "tags": [ { "key": "wallet", "value": "Wallet" } ]
   }
 ]

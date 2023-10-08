@@ -122,8 +122,8 @@ class AppDetailsInfo {
 }
 
 class DisplayValue {
-    constructor(value, displayText) {
+    constructor(key, value) {
+        this.key = key;
         this.value = value;
-        this.displayText = displayText;
     }
 }
