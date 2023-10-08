@@ -44,11 +44,11 @@ function descriptionBlockView() {
 }
 
 function updateBookmarkState() {
-    if(!selectedAppDetails) {
+    if (!selectedAppDetails) {
         return;
     }
-    removeClassesFromElement(idAppDetailsBookmark, [cssButtonActionPrimary,  cssButtonActionSecondary]);
-    if(selectedAppDetails.fav) {
+    removeClassesFromElement(idAppDetailsBookmark, [cssButtonActionPrimary, cssButtonActionSecondary]);
+    if (selectedAppDetails.fav) {
         addClassToElement(idAppDetailsBookmark, cssButtonActionSecondary);
         replaceInElement(idAppDetailsBookmark, "Bookmarked")
     } else {
@@ -59,11 +59,14 @@ function updateBookmarkState() {
 }
 
 function updateRatingState() {
-    if(!selectedAppDetails) {
+    if (!selectedAppDetails) {
         return;
     }
-    for(let i = 1; i<=selectedAppDetails.userRating; i++) {
+    for (let i = 1; i <= selectedAppDetails.userRating; i++) {
         replaceInElement(`app_rating_${i}`, "★");
+    }
+    for (let i = selectedAppDetails.userRating + 1; i <= 5; i++) {
+        replaceInElement(`app_rating_${i}`, "☆");
     }
 }
 
@@ -74,19 +77,14 @@ function onOpenAppClicked() {
 }
 
 function onBookmarkClicked() {
-    if(selectedAppDetails) {
+    if (selectedAppDetails) {
         bookmarkApp(selectedAppDetails);
     }
 }
 
 function onRatingClicked(value) {
-    if(!window.Telegram.WebApp.initDataUnsafe?.user?.is_premium) {
-        window.Telegram.WebApp.showAlert("Unfortunately, only premium Telegram users can rate apps.\nThis makes our store more reliable and protected from rating scoring by bots.")
-        window.Telegram.WebApp.HapticFeedback.selectionChanged("warning");
-        return;
-    }
-    if(selectedAppDetails) {
-        
+    if (selectedAppDetails) {
+        rateApp(selectedAppDetails, value);
     }
 }
 
@@ -117,26 +115,42 @@ function updateAppDetails(appDetails) {
 
 function loadAppDetails(app) {
     loadAppDetailsDelegate(
-        window.Telegram.WebApp.initDataUnsafe?.user?.id, 
+        window.Telegram.WebApp.initDataUnsafe?.user?.id,
         app.id,
         window.Telegram.WebApp.initData,
         data => {
             displayAppDetails(data);
         },
-        error => {}
+        error => { }
     );
 }
 
 function bookmarkApp(appDetails) {
     bookmarkAppDelegate(
-        window.Telegram.WebApp.initDataUnsafe?.user?.id, 
+        window.Telegram.WebApp.initDataUnsafe?.user?.id,
         appDetails.id,
         !appDetails.fav,
         window.Telegram.WebApp.initData,
         data => {
-            appDetails.fav = data;
+            appDetails.fav = data.fav;
             updateBookmarkState();
         },
-        error => {}
+        error => { }
     );
+}
+
+function rateApp(appDetails, rating) {
+    rateAppDelegate(
+        window.Telegram.WebApp.initDataUnsafe?.user?.id,
+        appDetails.id,
+        rating,
+        window.Telegram.WebApp.initData,
+        data => {
+            appDetails.rating = data.rating;
+            appDetails.rateCount = data.rateCount;
+            appDetails.userRating = data.userRating;
+            updateRatingState();
+        },
+        error => { }
+    )
 }

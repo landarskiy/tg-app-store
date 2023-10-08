@@ -74,6 +74,22 @@ class AppsResponse {
     }
 }
 
+class AddToBookmarksResponse {
+    constructor(id, fav) {
+        this.id = id;
+        this.fav = fav;
+    }
+}
+
+class RateAppResponse {
+    constructor(id, rating, userRating, rateCount) {
+        this.id = id;
+        this.rating = rating;
+        this.userRating = userRating;
+        this.rateCount = rateCount;
+    }
+}
+
 class AppInfo {
     constructor(id, iconUrl, title, rating, rateCount, category, tags, fav) {
         this.id = id;
