@@ -69,7 +69,7 @@ function displayApps(apps) {
 }
 
 function pageMainBookmarkChanged(appDetails, addToBookmarksResponse) {
-    if (selectedCategoryId == "all") {
+    if (selectedCategoryId == "my") {
         loadApps(selectedCategoryId);
         return;
     } 

@@ -3,6 +3,7 @@ let selectedAppDetails;
 
 function displayAppPage(app) {
     pushPage("app-page", appDetailsPage(app));
+    updateBookmarkStateInternal(app.fav, false);
     loadAppDetails(app);
 }
 
@@ -47,15 +48,21 @@ function updateBookmarkState() {
     if (!selectedAppDetails) {
         return;
     }
+    updateBookmarkStateInternal(selectedAppDetails.fav, true);
+}
+
+function updateBookmarkStateInternal(fav, notify) {
     removeClassesFromElement(idAppDetailsBookmark, [cssButtonActionPrimary, cssButtonActionSecondary]);
-    if (selectedAppDetails.fav) {
+    if (fav) {
         addClassToElement(idAppDetailsBookmark, cssButtonActionSecondary);
         replaceInElement(idAppDetailsBookmark, "Bookmarked")
     } else {
         addClassToElement(idAppDetailsBookmark, cssButtonActionPrimary);
         replaceInElement(idAppDetailsBookmark, "Bookmark")
     }
-    window.Telegram.WebApp.HapticFeedback.selectionChanged();
+    if(notify) {
+        window.Telegram.WebApp.HapticFeedback.selectionChanged();
+    }
 }
 
 function updateRatingState() {
