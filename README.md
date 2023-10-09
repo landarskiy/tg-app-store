@@ -1,6 +1,6 @@
 # Telegram Mini App Demo
 
-This repository provides an example of developing a mini-application called the "Mini App Store" for the Telegram platform. You can access a live test version of the application by following [this link](https://t.me/tg_app_store_bot).
+This repository provides an example of developing a [mini-application](https://core.telegram.org/bots/webapps#initializing-mini-apps) called the "Mini App Store" for the Telegram platform. You can access a live test version of the application by following [this link](https://t.me/tg_app_store_bot).
 
 Key features:
 
@@ -37,7 +37,7 @@ At this stage, we just need to obtain the bot token. You don't need to write the
 
 ### Availability of index.html
 
-Unlike a traditional Telegram bot, which requires a backend, a Telegram Mini App, in its minimal form, only requires a web page. The simplest and free way to host static HTML pages is by using GitHub itself. We will use [GitHub Pages](https://pages.github.com) to host the contents of our webapp directory. GitHub Pages allows you to host content in two places (at the time of writing): the root directory `/(root)` or the `/docs` directory. 
+Unlike a traditional Telegram bot, which requires a backend, a Telegram Mini App, in its minimal form, only requires a web page. The simplest and free way to host static HTML pages is by using GitHub itself. We will use [GitHub Pages](https://pages.github.com) to host the contents of our `webapp` directory. GitHub Pages allows you to host content in two places (at the time of writing): the root directory `/(root)` or the `/docs` directory. 
 
 For the sake of organizing different parts of the project, our content is placed in the `/webapp` directory. To make it accessible for display on GitHub Pages, we use the [GitHub Pages Overwriter](https://github.com/marketplace/actions/github-pages-overwriter) plugin in the repository. Make sure it's working correctly in the `Actions` tab of your repository.
 
@@ -268,3 +268,119 @@ const configuration = {
     serverUrl: "https://tgminiapp-65728c571d53.herokuapp.com"
 }
 ```
+
+# Application components
+
+After completing the previous step, you now have a fully functional production-ready application. Let's take a closer look at each part of it. Some aspects of the application's operation were already described during the setup process. Here, we'll provide more detailed information about other aspects of its functionality.
+
+## Webapp
+
+The `webapp` is a lightweight user interface (UI) displayed within the Telegram bot. Its source code is located in the webapp folder. Essentially, it is a minimalist web project consisting of HTML, CSS, and JavaScript without unnecessary dependencies. It implements the concept of a single web page application, where all the required scripts and styles for generating pages are loaded only once. The pages themselves are constructed based on small portions of data received from the backend. This approach minimizes the time required to generate a new page, which is particularly important for creating smooth and fast applications.
+
+The main and only HTML page is `index.html`, which serves as a wrapper. It includes the necessary CSS and JavaScript dependencies and contains a single element called `frame-root`. This element dynamically loads the displayed pages.
+
+```html
+<body>
+    <div id="frame-root" class="frame-container"></div>
+</body>
+```
+
+### navigation.js
+
+It's a lightweight framework for implementing the concept of a single web page application. It provides essential methods for replacing, adding, and removing screen pages within the `frame-root` frame. One of its useful functions is automatically updating the `window.Telegram.WebApp.BackButton.isVisible` property when the page stack changes.
+
+When working on your own version of an application based on this project, it is recommended to use the methods from this file to minimize navigation errors.
+
+### *-app.js
+
+Application pages. Each such file contains a `display*` method that should be called when you need to open a page. For example, the `page-main.js` file contains the following method:
+
+```js
+function displayMainPage() {
+    replaceTopPage("main-page", mainPage());
+    loadApps(selectedCategoryId);
+    selectCategoryOnUi(selectedCategoryId);
+}
+```
+
+It is called after `index.html` has been completely loaded, including all styles and necessary resources:
+
+```js
+window.onload = function() {
+    displayMainPage();
+};
+```
+
+Above is a snippet from the `main.js` file, which is the main entry point of the application.
+
+### webapp/css
+
+The main `style.css` file contains the styles used in the application. In the folder, there are two additional files: `css-class-name-generator.sh` and `css-class-names.js`. Since our application generates all the content on the spot in js files, it's convenient to have access to the style class names without the need to copy their names every time.
+
+To solve this issue, you can run the `css-class-name-generator.sh` script each time you add or modify a class in the `style.css` file. This script generates the `css-class-names.js` file, which is a js file with constants for the class names from `style.`css. This approach allows you to use autocompletion while coding the blocks in your js files.
+
+Here's an example of the generated file:
+
+```js
+// Generated class names from style.css
+const cssFrameContainer = "frame-container";
+const cssPageContainer = "page-container";
+const cssContainerScrollH = "container-scroll-h";
+```
+
+If your CSS file has a different name or you want to change the name of the output file, you can modify the lines in `css-class-name-generator.sh` responsible for naming or enhance the script to accept these values as arguments.
+
+## Backend
+
+The backend part handles user requests and is located in the `backend` folder. The server project is a classic [Ktor server](https://ktor.io/docs/create-server.html).
+
+The project uses 3 basic plugins: [Routing](https://ktor.io/docs/routing-in-ktor.html) for request handling, [CORS](https://ktor.io/docs/cors.html) for proper client-side functioning, and [Content negotiation](https://ktor.io/docs/serialization.html) for object serialization and deserialization.
+
+### src/main/resources
+
+In addition to the standard files required for configuring and running the server, this directory contains files with test data: `mock-app-details.json` - a file with a list of applications, and `mock-app-rating.json` - a file with some ratings for these applications.
+
+To simplify the example, the server does not support integration with a database management system (DBMS) and does not persist data across restarts. When the server restarts, all data is reset to the state described in the aforementioned files.
+
+The server's architecture makes it easy to implement database integration, as will be explained below, but this is beyond the scope of this example.
+
+### src/main/kotlin/.../repository
+
+It contains handler classes for each of the requests sent from our application. The most crucial aspect in these handlers is user identification.
+
+The client application adds the [initData](https://core.telegram.org/bots/webapps#initializing-mini-apps) value to the request body for each method call. The server uses this data to understand on behalf of which user the request is being made. This information is necessary to provide the user with relevant information about which apps are added to favorites, which ratings have been given, and to prevent the leakage of this data to unauthorized users.
+
+To ensure that the data is sent from the user specified in `initData`, validation is implemented according to the [algorithm](https://core.telegram.org/bots/webapps#validating-data-received-via-the-mini-app) described in the documentation. This is why we needed our bot's token.
+
+You can view the validation code in the `InitDataParser.kt` file. This class is used in all handler methods before populating the response with private data.
+
+For example, the code that generates the response for the list of applications looks following:
+
+```kotlin
+override suspend fun handle(call: ApplicationCall) {
+    val initDataModel = initDataParser.parseInitData(call)
+    val userId = initDataModel?.userModel?.id
+    log.info("Call from user: $userId")
+    val categoryId = call.parameters["category_id"] ?: CATEGORY_ID_ALL
+    val userBookmarkedApps = userId?.let { userRepository.getUserAppBookmarks(it) } ?: emptySet()
+    val rawApps = when (categoryId) {
+        CATEGORY_ID_ALL -> appRepository.getAllApps().sortedByDescending { it.rating }
+        CATEGORY_ID_BOOKMARKED -> appRepository.getApps(userBookmarkedApps).sortedBy { it.title }
+        else -> appRepository.getApps(categoryId).sortedByDescending { it.rating }
+    }
+    val returnApps = rawApps.map {
+        NetworkAppModel.fromModel(it).copy(bookmarked = userBookmarkedApps.contains(it.id))
+    }
+    call.respondText(Json.encodeToString(returnApps), ContentType.Application.Json, HttpStatusCode.OK)
+}
+```
+
+In case of data validation errors or absence of `initData`, the `initDataParser` will return a `null` object. Consequently, the server will consider the request as anonymous and will only provide public information without any personalization.
+
+That's why, in the initial steps of the documentation when we cloned the application, we could see the data but couldn't rate or add apps to favorites.
+
+If you want to restrict access to your data outside of the Telegram app, you can handle this case more strictly and return an error if you detect that `initData` is invalid.
+
+### Heroku
+
+To deploy the project on Heroku, the project contains a `Procfile`. You can learn more about integrating the project with Heroku from the official [Ktor guide](https://ktor.io/docs/heroku.html).
