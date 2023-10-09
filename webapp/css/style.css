@@ -64,7 +64,7 @@ body {
 .container-scroll-h-screenshot-list-preview {
     padding: 0px 16px;
     gap: 16px;
-    height: min(400px, 100vh / 2);
+    height: 360px;
 }
 
 .container-flex-space-between {

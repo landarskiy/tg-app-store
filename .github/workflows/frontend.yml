@@ -3,7 +3,7 @@ name: Frontend publishing
 on:
   push:
     branches:
-      - '*'
+      - 'master'
 
 jobs:
     publish:
