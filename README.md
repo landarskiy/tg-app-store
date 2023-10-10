@@ -1,6 +1,5 @@
 # Telegram Mini App Demo
 
-[//]: # (IMAGE_HERE - хидер)
 ![github banner rounded](https://github.com/landarskiy/tg-app-store/assets/2251498/8ffda8f2-9ca6-4db1-bdb9-a777f8027e43)
 
 This repository provides an example of developing a [mini-application](https://core.telegram.org/bots/webapps#initializing-mini-apps) called the "Mini App Store" for the Telegram platform. You can access a live test version of the application by following [this link](https://t.me/tg_app_store_bot/store).
@@ -14,7 +13,6 @@ Key features:
 
 The Russian version of the documentation is available [🇷🇺 here](README-RU.md)
 
-[//]: # (IMAGE_HERE - скрины приложения)
 ![bot](https://github.com/landarskiy/tg-app-store/assets/2251498/edf47f97-60df-4835-9929-10598b315de1)
 
 ## Technical stack
@@ -49,14 +47,12 @@ For the sake of organizing different parts of the project, our content is placed
 
 After cloning the repository, you need to explicitly enable Actions in the corresponding tab. Now, to run it, you need to make any commit. For example, you can open and edit the `LICENSE` file directly in the browser, changing the name to your own. After committing the changes, the `Frontend publishing` Action will be triggered.
 
-[//]: # (IMAGE_HERE - скрины экшена)
 ![action](https://github.com/landarskiy/tg-app-store/assets/2251498/0297169b-23b0-4950-9fc8-db9aa92aa3a7)
 
 If the Action runs with an error, ensure that the Actions have Read and write permissions. You can check this in your repository settings under `Settings -> Actions (Code and automation) -> General -> Workflow permissions`. Read and write permissions should be selected.
 
 If the publication was successful, you can access the HTML page and view the content of our store at http://username.github.io/repository (in the current repository, it's http://landarskiy.github.io/tg-app-store).
 
-[//]: # (IMAGE_HERE - скрин из браузера)
 ![browser](https://github.com/landarskiy/tg-app-store/assets/2251498/dd45ab23-23a2-4ab4-bf56-cc08455833d1)
 
 If, for any reason, after a successful Action run, the content of the webapp folder is not accessible via the GitHub Pages link, consult the documentation of the `GitHub Pages Overwriter plugin`. Check whether you have configured Pages correctly in your repository, whether the Action is triggered upon changes, whether the branch configured for the plugin exists. As a last resort, consider moving the content from the `/webapp` directory to the `/docs` directory, as required by GitHub Pages. In this case, you won't need to use the mentioned plugin.
@@ -67,12 +63,10 @@ Following the [official instructions](https://core.telegram.org/bots/webapps#lau
 
 If everything is done correctly, you can enter your bot and open the store app in it through the menu button.
 
-[//]: # (IMAGE_HERE - скрин кнопки меню)
 ![bot button](https://github.com/landarskiy/tg-app-store/assets/2251498/73849583-287c-4cfe-a7cb-93f7749cf9ae)
 
 Currently, your bot retrieves data from the main repository's server. This means there's a chance you won't see the actual app content (i.e., the presence of apps in the store). This situation can occur for various reasons: the server has stopped working, it's temporarily unavailable, and so on. However, in any case, regardless of the server's data source availability, the page should be loaded and displayed correctly, even if it's empty. Later on, we'll discuss how to get started without a server at the initial stage, but for now, let's not focus on that.
 
-[//]: # (IMAGE_HERE - скрин страницы магазина)
 ![expanded market](https://github.com/landarskiy/tg-app-store/assets/2251498/ed020851-bffb-4f3d-8409-d4e3374cd771)
 
 You may also notice that some functions, such as adding to favorites and rating, don't work correctly. This is because client validation occurs on the server. We'll discuss this aspect a little later as well.
@@ -242,12 +236,10 @@ The second method requires [Intellij Idea Community Edition](https://www.jetbrai
 
 Wait for the project synchronization to complete, and then open the `Application.kt` file located at `src/main/kotlin/io/github/landarskiy/Application.kt`. Next to the `fun main(args: Array<String>)` method, you will see a green arrow, which you need to click to run the project directly in the IDE.
 
-[//]: # (IMAGE_HERE - скрин из IDE)
 ![ide run](https://github.com/landarskiy/tg-app-store/assets/2251498/6b5158b5-c674-40ad-b6e1-866cfbfbec93)
 
 When you first run it, the value next to Telegram bot token will be `0` in the logs. This is because we have not set the environment variable. Follow this [instruction](https://www.jetbrains.com/help/objc/add-environment-variables-and-program-arguments.html#add-environment-variables) to add a value for the `TELEGRAM_BOT_TOKEN` variable, and then restart the server. Now, the value should be different from `0`.
 
-[//]: # (IMAGE_HERE - скрин из IDE)
 ![bot token](https://github.com/landarskiy/tg-app-store/assets/2251498/3dfe0b5f-7041-4b9f-9b22-2eb85ae07b96)
 
 #### Updating Frontend
