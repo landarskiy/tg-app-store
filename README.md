@@ -277,11 +277,10 @@ Unfortunately, there are no free Java hosting providers on the market, but you c
 
 Follow the [official instructions](https://ktor.io/docs/heroku.html) to deploy your server instance on [Heroku](https://dashboard.heroku.com/). Due to the fact that our server code is not located in the root directory, you will need additional configuration for Heroku to recognize our project. Use the instructions and install the [subdir-heroku-buildpack](https://elements.heroku.com/buildpacks/timanovsky/subdir-heroku-buildpack).
 
-[//]: # (IMAGE_HERE - скрин из Heroku)
-
 Follow the [instructions](https://devcenter.heroku.com/articles/config-vars#using-the-heroku-dashboard) to set the environment variable `TELEGRAM_BOT_TOKEN` in the Heroku Dashboard.
 
 [//]: # (IMAGE_HERE - скрин из Heroku)
+![heroku settings](https://github.com/landarskiy/tg-app-store/assets/2251498/edfd16ba-3518-4575-9dba-94bfff625b20)
 
 After that, start your application and check the [logs](https://devcenter.heroku.com/articles/logging#view-logs-with-the-heroku-dashboard). They should contain the same information as when running the local server. Retrieve the address of your server from there and update `config.json`. It should look similar to this:
 
