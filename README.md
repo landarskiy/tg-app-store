@@ -279,7 +279,6 @@ Follow the [official instructions](https://ktor.io/docs/heroku.html) to deploy y
 
 Follow the [instructions](https://devcenter.heroku.com/articles/config-vars#using-the-heroku-dashboard) to set the environment variable `TELEGRAM_BOT_TOKEN` in the Heroku Dashboard.
 
-[//]: # (IMAGE_HERE - скрин из Heroku)
 ![heroku settings](https://github.com/landarskiy/tg-app-store/assets/2251498/edfd16ba-3518-4575-9dba-94bfff625b20)
 
 After that, start your application and check the [logs](https://devcenter.heroku.com/articles/logging#view-logs-with-the-heroku-dashboard). They should contain the same information as when running the local server. Retrieve the address of your server from there and update `config.json`. It should look similar to this:
@@ -289,8 +288,6 @@ const configuration = {
     serverUrl: "https://tgminiapp-65728c571d53.herokuapp.com"
 }
 ```
-
-[//]: # (IMAGE_HERE - скрин из Heroku)
 
 # Application components
 

@@ -275,11 +275,9 @@ Route resolve result:
 
 Пользуясь [официальной инструкцией](https://ktor.io/docs/heroku.html) разместите ваш экземпляр сервера в [Heroku](https://dashboard.heroku.com/). Из-за того, что код нашего сервера расположен не в корне, понадобится дополнительная настройка окружения, чтобы Heroku увидел наш проект. Воспользуйтесь инструкцией и установите [subdir-heroku-buildpack](https://elements.heroku.com/buildpacks/timanovsky/subdir-heroku-buildpack). 
 
-[//]: # (IMAGE_HERE - скрин из Heroku)
-
 Пользуясь [инструкцией](https://devcenter.heroku.com/articles/config-vars#using-the-heroku-dashboard), уставновите в Heroku Dashboard переменную окружения `TELEGRAM_BOT_TOKEN`. 
 
-[//]: # (IMAGE_HERE - скрин из Heroku)
+![heroku settings](https://github.com/landarskiy/tg-app-store/assets/2251498/edfd16ba-3518-4575-9dba-94bfff625b20)
 
 После этого запустите ваше приложение и [проверьте логи](https://devcenter.heroku.com/articles/logging#view-logs-with-the-heroku-dashboard), в них должна содержаться та же информация, что и при запуске локального сервера. Воздмите оттуда адрес вашего сервера и обновите `config.json`, он должен выглядеть похожим образом:
 
@@ -288,8 +286,6 @@ const configuration = {
     serverUrl: "https://tgminiapp-65728c571d53.herokuapp.com"
 }
 ```
-
-[//]: # (IMAGE_HERE - скрин из Heroku)
 
 # Компоненты приложения
 
