@@ -1,6 +1,8 @@
 # Telegram Mini App Demo
 
-This repository provides an example of developing a [mini-application](https://core.telegram.org/bots/webapps#initializing-mini-apps) called the "Mini App Store" for the Telegram platform. You can access a live test version of the application by following [this link](https://t.me/tg_app_store_bot).
+[//]: # (IMAGE_HERE - хидер)
+
+This repository provides an example of developing a [mini-application](https://core.telegram.org/bots/webapps#initializing-mini-apps) called the "Mini App Store" for the Telegram platform. You can access a live test version of the application by following [this link](https://t.me/tg_app_store_bot/store).
 
 Key features:
 
@@ -11,7 +13,9 @@ Key features:
 
 The Russian version of the documentation is available [🇷🇺 here](README-RU.md)
 
-## Technical Stack
+[//]: # (IMAGE_HERE - скрины приложения)
+
+## Technical stack
 
 This example uses the following technical stack: HTML, JS, CSS, Kotlin, [Ktor](https://ktor.io/), [Heroku](https://www.heroku.com/).
 
@@ -21,13 +25,13 @@ To comfortably explore this example, basic knowledge of web development is requi
 
 You can use this repository as a starting point when creating your own Telegram Mini Apps. The source code for the client and server represents a minimalist set of methods, sufficient for understanding the basics of developing your own applications. Many things are intentionally simplified to avoid overloading the test example with unnecessary details. At the same time, the focus is on important nuances that should be taken into account when developing your own application.
 
-## Quick Start
+## Quick start
 
 To get started, let's prepare your own version of the project and run your own bot.
 
-### Fork the Repository
+### Fork the repository
 
-To be able to make your own changes and receive updates, create a fork of the current repository.
+To be able to make your own changes and receive updates, create a [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) of the current repository.
 
 ### Telegram Bot
 
@@ -41,9 +45,15 @@ Unlike a traditional Telegram bot, which requires a backend, a Telegram Mini App
 
 For the sake of organizing different parts of the project, our content is placed in the `/webapp` directory. To make it accessible for display on GitHub Pages, we use the [GitHub Pages Overwriter](https://github.com/marketplace/actions/github-pages-overwriter) plugin in the repository. Make sure it's working correctly in the `Actions` tab of your repository.
 
+After cloning the repository, you need to explicitly enable Actions in the corresponding tab. Now, to run it, you need to make any commit. For example, you can open and edit the `LICENSE` file directly in the browser, changing the name to your own. After committing the changes, the `Frontend publishing` Action will be triggered.
+
+[//]: # (IMAGE_HERE - скрины экшена)
+
 If the Action runs with an error, ensure that the Actions have Read and write permissions. You can check this in your repository settings under `Settings -> Actions (Code and automation) -> General -> Workflow permissions`. Read and write permissions should be selected.
 
 If the publication was successful, you can access the HTML page and view the content of our store at http://username.github.io/repository (in the current repository, it's http://landarskiy.github.io/tg-app-store).
+
+[//]: # (IMAGE_HERE - скрин из браузера)
 
 If, for any reason, after a successful Action run, the content of the webapp folder is not accessible via the GitHub Pages link, consult the documentation of the `GitHub Pages Overwriter plugin`. Check whether you have configured Pages correctly in your repository, whether the Action is triggered upon changes, whether the branch configured for the plugin exists. As a last resort, consider moving the content from the `/webapp` directory to the `/docs` directory, as required by GitHub Pages. In this case, you won't need to use the mentioned plugin.
 
@@ -53,7 +63,11 @@ Following the [official instructions](https://core.telegram.org/bots/webapps#lau
 
 If everything is done correctly, you can enter your bot and open the store app in it through the menu button.
 
+[//]: # (IMAGE_HERE - скрин кнопки меню)
+
 Currently, your bot retrieves data from the main repository's server. This means there's a chance you won't see the actual app content (i.e., the presence of apps in the store). This situation can occur for various reasons: the server has stopped working, it's temporarily unavailable, and so on. However, in any case, regardless of the server's data source availability, the page should be loaded and displayed correctly, even if it's empty. Later on, we'll discuss how to get started without a server at the initial stage, but for now, let's not focus on that.
+
+[//]: # (IMAGE_HERE - скрин страницы магазина)
 
 You may also notice that some functions, such as adding to favorites and rating, don't work correctly. This is because client validation occurs on the server. We'll discuss this aspect a little later as well.
 
@@ -222,7 +236,11 @@ The second method requires [Intellij Idea Community Edition](https://www.jetbrai
 
 Wait for the project synchronization to complete, and then open the `Application.kt` file located at `src/main/kotlin/io/github/landarskiy/Application.kt`. Next to the `fun main(args: Array<String>)` method, you will see a green arrow, which you need to click to run the project directly in the IDE.
 
+[//]: # (IMAGE_HERE - скрин из IDE)
+
 When you first run it, the value next to Telegram bot token will be `0` in the logs. This is because we have not set the environment variable. Follow this [instruction](https://www.jetbrains.com/help/objc/add-environment-variables-and-program-arguments.html#add-environment-variables) to add a value for the `TELEGRAM_BOT_TOKEN` variable, and then restart the server. Now, the value should be different from `0`.
+
+[//]: # (IMAGE_HERE - скрин из IDE)
 
 #### Updating Frontend
 
@@ -259,7 +277,11 @@ Unfortunately, there are no free Java hosting providers on the market, but you c
 
 Follow the [official instructions](https://ktor.io/docs/heroku.html) to deploy your server instance on [Heroku](https://dashboard.heroku.com/). Due to the fact that our server code is not located in the root directory, you will need additional configuration for Heroku to recognize our project. Use the instructions and install the [subdir-heroku-buildpack](https://elements.heroku.com/buildpacks/timanovsky/subdir-heroku-buildpack).
 
+[//]: # (IMAGE_HERE - скрин из Heroku)
+
 Follow the [instructions](https://devcenter.heroku.com/articles/config-vars#using-the-heroku-dashboard) to set the environment variable `TELEGRAM_BOT_TOKEN` in the Heroku Dashboard.
+
+[//]: # (IMAGE_HERE - скрин из Heroku)
 
 After that, start your application and check the [logs](https://devcenter.heroku.com/articles/logging#view-logs-with-the-heroku-dashboard). They should contain the same information as when running the local server. Retrieve the address of your server from there and update `config.json`. It should look similar to this:
 
@@ -268,6 +290,8 @@ const configuration = {
     serverUrl: "https://tgminiapp-65728c571d53.herokuapp.com"
 }
 ```
+
+[//]: # (IMAGE_HERE - скрин из Heroku)
 
 # Application components
 

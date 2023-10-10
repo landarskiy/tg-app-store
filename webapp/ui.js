@@ -16,7 +16,7 @@ function appItemView(id, imgUrl, title, category, tags, rating, bookmarked, onCl
 
 function appItemViewContent(imgUrl, title, category, tags, rating, bookmarked) {
     let bookmarkTag = "";
-    if(bookmarked) {
+    if (bookmarked) {
         bookmarkTag = " • Bookmarked";
     }
     return `
@@ -29,13 +29,17 @@ function appItemViewContent(imgUrl, title, category, tags, rating, bookmarked) {
     `;
 }
 
-function appDetailsItemView(id, imgUrl, title, category, tags) {
+function appDetailsItemView(id, imgUrl, title, category, tags, rating, rateCount) {
+    let ratingInfo = "";
+    if (rateCount > 0) {
+        ratingInfo = `${rating.toFixed(1)} ★  • `;
+    }
     return `
     <div id="app-details-${id}" class="${cssItemApp}">
         ${mediumRoundedSquareImageView(imgUrl)}
         <div class="${cssItemAppContent}" style="margin-left: 12px">
             <div class="${cssTextTitleLarge}">${title}</div>
-            <div class="${cssTextBodyLarge}" style="margin-top: 8px; margin-bottom: 2px">${buildCategoriesLine(category, tags)}</div>
+            <div class="${cssTextBodyLarge}" style="margin-top: 8px; margin-bottom: 2px">${ratingInfo}${buildCategoriesLine(category, tags)}</div>
         </div>
     </div>
     `;
@@ -47,12 +51,6 @@ function buildCategoriesLine(category, tags) {
         categoriesLine += " • " + tags[i].value;
     }
     return categoriesLine;
-}
-
-function appDetailsImageView(imgUrl) {
-    return `
-    <img class="image-app-details" src="${imgUrl}"></img>
-    `;
 }
 
 function smallRoundedSquareImageView(url) {
@@ -82,7 +80,7 @@ function categoryChipView(id, displayValue, onClickCallbackName) {
 
 function ratingBarView(id, onClickCallbackName) {
     let ratingContent = "";
-    for(let i = 1; i<= 5; i++) {
+    for (let i = 1; i <= 5; i++) {
         ratingContent += `
         <div class="${cssContainerItemFlexEqual} ${cssRatingBarItem}" style="padding: 0px 10px">
             <div id="app_rating_${i}" class="" style="width: 100%;" onClick="${onClickCallbackName}('${i}')"">☆</div>

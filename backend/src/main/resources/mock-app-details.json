@@ -1,12 +1,11 @@
 [
   {
     "id": "durgerkingbot",
-    "iconUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/icon-durger.jpeg",
+    "iconUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/durgerkingbot/icon.jpeg",
     "screenshots": [
-      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/app-durger.jpg",
-      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/app-durger.jpg",
-      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/app-durger.jpg",
-      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/app-durger.jpg"
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/durgerkingbot/screen-1.png",
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/durgerkingbot/screen-2.png",
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/durgerkingbot/screen-3.png"
     ],
     "botAppUrl": "https://t.me/durgerkingbot/menu",
     "title": "Durger King",
@@ -16,16 +15,114 @@
   },
   {
     "id": "wallet",
-    "iconUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/icon-wallet.jpeg",
+    "iconUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/wallet/icon.jpeg",
     "screenshots": [
-      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/app-wallet.jpg",
-      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/app-wallet.jpg",
-      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/app-wallet.jpg"
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/wallet/screen-1.png",
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/wallet/screen-2.png",
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/wallet/screen-3.png"
     ],
     "botAppUrl": "https://t.me/wallet/start",
     "title": "Wallet",
     "description": "Purchase cryptocurrency by bank card, exchange, and transfer to other wallets.",
     "category": { "key": "finance", "value": "Finance" },
     "tags": [ { "key": "wallet", "value": "Wallet" } ]
+  },
+  {
+    "id": "callegrambot",
+    "iconUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/callegrambot/icon.jpeg",
+    "screenshots": [
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/callegrambot/screen-1.png",
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/callegrambot/screen-2.png",
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/callegrambot/screen-3.png"
+    ],
+    "botAppUrl": "https://t.me/callegrambot/calendar",
+    "title": "@Call",
+    "description": "Use this bot to schedule calls with users natively in Telegram. Made by D&A team: @arterialist & @krimon",
+    "category": { "key": "utilities", "value": "Utilities" },
+    "tags": [ { "key": "calendar", "value": "Calendar" } ]
+  },
+  {
+    "id": "beastmemorybot",
+    "iconUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/beastmemorybot/icon.jpeg",
+    "screenshots": [
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/beastmemorybot/screen-1.png",
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/beastmemorybot/screen-2.png",
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/beastmemorybot/screen-3.png"
+    ],
+    "botAppUrl": "http://t.me/BeastMemoryBot/game",
+    "title": "BeastMemory",
+    "description": "Funny game",
+    "category": { "key": "games", "value": "Games" },
+    "tags": [ { "key": "casual", "value": "Casual" } ]
+  },
+  {
+    "id": "buttonmaniabot",
+    "iconUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/buttonmaniabot/icon.jpeg",
+    "screenshots": [
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/buttonmaniabot/screen-1.png",
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/buttonmaniabot/screen-2.png",
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/buttonmaniabot/screen-3.png"
+    ],
+    "botAppUrl": "https://t.me/ButtonManiaBot/app",
+    "title": "ButtonMania",
+    "description": "Hold the button, compete with others, and aim to set the world record in button holding fun!",
+    "category": { "key": "games", "value": "Games" },
+    "tags": [ { "key": "casual", "value": "Casual" } ]
+  },
+  {
+    "id": "fstikbot",
+    "iconUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/fstikbot/icon.jpeg",
+    "screenshots": [
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/fstikbot/screen-1.png",
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/fstikbot/screen-2.png",
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/app-media-content/fstikbot/screen-3.png"
+    ],
+    "botAppUrl": "https://t.me/fstikbot/catalog",
+    "title": "Favorite Stickers Bot \uD83C\uDDFA\uD83C\uDDE6",
+    "description": "\uD83E\uDDD9 Я волшебник эмодзи и стикеров! Превратите фотографии, видео и GIF в крутые стикеры в мгновение ока.",
+    "category": { "key": "utilities", "value": "Utilities" },
+    "tags": [ { "key": "content", "value": "Content" } ]
+  },
+  {
+    "id": "placeholder1",
+    "iconUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/screen-placeholder.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/screen-placeholder.png",
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/screen-placeholder.png",
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/screen-placeholder.png"
+    ],
+    "botAppUrl": "https://t.me/tg_app_store_bot/store",
+    "title": "Placeholder Finance App",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "category": { "key": "finance", "value": "Finance" },
+    "tags": [ { "key": "other", "value": "Other" } ]
+  },
+  {
+    "id": "placeholder2",
+    "iconUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/screen-placeholder.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/screen-placeholder.png",
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/screen-placeholder.png",
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/screen-placeholder.png"
+    ],
+    "botAppUrl": "https://t.me/tg_app_store_bot/store",
+    "title": "Placeholder Food App",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "category": { "key": "food", "value": "Food" },
+    "tags": [ { "key": "delivery", "value": "Delivery" } ]
+  },
+  {
+    "id": "placeholder3",
+    "iconUrl": "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/screen-placeholder.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/screen-placeholder.png",
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/screen-placeholder.png",
+      "https://raw.githubusercontent.com/protoshadowmaker/tgminiapp/main/assets/screen-placeholder.png"
+    ],
+    "botAppUrl": "https://t.me/tg_app_store_bot/store",
+    "title": "Placeholder Utilities App",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "category": { "key": "utilities", "value": "Utilities" },
+    "tags": [ { "key": "content", "value": "Content" } ]
   }
 ]

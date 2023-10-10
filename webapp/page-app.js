@@ -9,7 +9,7 @@ function displayAppPage(app) {
 
 function appDetailsPage(app) {
     return `
-    ${appDetailsItemView(app.id, app.iconUrl, app.title, app.category, app.tags)}
+    ${appDetailsItemView(app.id, app.iconUrl, app.title, app.category, app.tags, app.rating, app.rateCount)}
     ${appDetailsActionsView()}
     ${appScreenshotsView()}
     ${ratingBarView("rating-bar", "onRatingClicked")}
@@ -97,7 +97,6 @@ function onRatingClicked(value) {
 
 function displayAppDetails(appDetails) {
     selectedAppDetails = appDetails;
-    replaceInElement("image-app-details-container", appDetailsImageView(appDetails.imageUrl));
     updateBookmarkState();
     updateRatingState();
     displayScreenshots(appDetails);
